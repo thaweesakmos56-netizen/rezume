@@ -37,7 +37,7 @@ const fadeOutStart = 8500;
 const fadeOutEnd = 10000;   
 
 // ==========================================
-// 5. Portfolio Modal Logic (แก้ไขให้ทำงานได้แน่นอน)
+// 5. Portfolio Modal Logic
 // ==========================================
 const projectData = {
     'thaweesak-bot': {
@@ -54,7 +54,7 @@ const projectData = {
     },
     'smart-task': {
         title: 'smart-task-manager',
-        desc_th: 'แอปพลิเคชันจัดการงานอัจฉริยะ พัฒนาด้วย PHP เพื่อช่วยจัดระเบียบงานในทีม ติดตามสถานะความคืบหน้า และแสดงผลผ่านหน้าจอที่ใช้งานง่าย',
+        desc_th: 'แอปพลิเคชันจัดการงานอัจฉริยะ พัฒนาด้วย PHP เพื่อช่วยจัดระเบียบงานในทีม ติดตามสถานะความคืบหน้า และแสดงผลผ่าน Dashboard ที่เข้าใจง่าย',
         desc_en: 'Smart Task Management application built with PHP for organizing team tasks, tracking progress, and visualizing data through an intuitive UI.',
         link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager'
     },
@@ -78,16 +78,12 @@ const projectData = {
     }
 };
 
-// ทำให้ฟังก์ชันเป็น Global เพื่อให้ HTML มองเห็นแน่นอน
 window.openProject = function(id) {
     const modal = document.getElementById('projectModal');
     const modalBody = document.getElementById('modalBody');
     const project = projectData[id];
-    
     if(!modal || !modalBody || !project) return;
-
     const isThai = document.body.classList.contains('lang-th-active');
-    
     modalBody.innerHTML = `
         <h2 style="color: var(--accent-gold); margin-bottom: 1rem; font-family: 'Poppins', sans-serif;">${project.title}</h2>
         <p style="color: #fff; line-height: 1.8; font-size: 1.05rem;">${isThai ? project.desc_th : project.desc_en}</p>
@@ -103,7 +99,6 @@ window.closeProject = function() {
     if(modal) modal.style.display = 'none';
 };
 
-// ปิด modal เมื่อคลิกพื้นหลังดำ
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('projectModal');
     if (event.target == modal) closeProject();
@@ -166,10 +161,8 @@ window.addEventListener('scroll', function() {
     if (scrollValue > jesusStart) {
         jesusAlpha = (scrollValue - jesusStart) / 500; 
         if (jesusAlpha > 1) jesusAlpha = 1;
-        
         jesusProgress = (scrollValue - jesusStart) / (jesusMiddle - jesusStart);
         if (jesusProgress > 1) jesusProgress = 1;
-
         if (scrollValue > fadeOutStart) {
             jesusAlpha = 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
         }
@@ -211,14 +204,15 @@ window.addEventListener('scroll', function() {
             }
         }
 
-        if (introHint) introHint.style.opacity = scrollValue > 50 ? '0' : '1';
-         if (scrollValue > 50) {
-        introHint.style.opacity = '0';
-        introHint.style.visibility = 'hidden'; // ป้องกันการบังหน้าจอ
-    } else {
-        introHint.style.opacity = '1';
-        introHint.style.visibility = 'visible';
-    }
-});
+        // 6.7 Intro Hint Fade & Visibility
+        if (introHint) {
+            if (scrollValue > 50) {
+                introHint.style.opacity = '0';
+                introHint.style.visibility = 'hidden';
+            } else {
+                introHint.style.opacity = '1';
+                introHint.style.visibility = 'visible';
+            }
+        }
     });
-
+});
