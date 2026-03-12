@@ -219,7 +219,6 @@ window.addEventListener('scroll', function() {
         introHint.style.opacity = '1';
         introHint.style.visibility = 'visible';
     }
-    
 });
 
     });
