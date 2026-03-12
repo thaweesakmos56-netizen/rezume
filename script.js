@@ -216,3 +216,16 @@ window.addEventListener('scroll', function() {
         }
     });
 });
+@media (max-width: 768px) {
+    .leaf-layer {
+        width: 160% !important; /* ขยายให้ใบไม้เลื่อนออกไปขอบมากขึ้น */
+    }
+    #leftL2, #rightL2 { left: 5% !important; right: 5% !important; }
+    #leftL3, #rightL3 { left: 10% !important; right: 10% !important; }
+    
+    /* ให้ Intro Hint อยู่ตำแหน่งที่มองเห็นง่าย */
+    .intro-hint {
+        bottom: 80px !important;
+    }
+}
+
