@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thaweesak Resume - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-th-active"> 
+
+    <!-- Intro Overlay (ห้ามลบ/แก้ไขเงื่อนไข) -->
+    <div class="intro-overlay" id="introOverlay">
+        <div class="split-side left-side">
+            <div class="leaf-layer" id="leftL1"></div>
+            <div class="leaf-layer" id="leftL2"></div>
+            <div class="leaf-layer" id="leftL3"></div>
+        </div>
+        <div class="split-side right-side">
+            <div class="leaf-layer" id="rightL1"></div>
+            <div class="leaf-layer" id="rightL2"></div>
+            <div class="leaf-layer" id="rightL3"></div>
+        </div>
+        <div class="galaxy-scene" id="galaxyScene">
+            <div class="galaxy-bg"></div> 
+            <img src="assets/img/zus1.png" class="zus-img zus-left" id="zusLeft">
+            <img src="assets/img/zus2.png" class="zus-img zus-right" id="zusRight">
+            <img src="assets/img/hikari.png" class="hikari-img" id="hikari">
+        </div>
+        <div class="jesus-scene" id="jesusScene">
+            <div class="jesus-bg"></div>
+            <img src="assets/img/jesus1.png" class="jesus-img j1" id="jesus1">
+            <img src="assets/img/jesus2.png" class="jesus-img j2" id="jesus2">
+        </div>
+        <div class="intro-hint" id="introHint">
+            <i class="fa-solid fa-chevron-down fa-2x"></i>
+            <p class="lang-th">เลื่อนลงเพื่อสำรวจ</p>
+            <p class="lang-en">SCROLL TO EXPLORE</p>
+        </div>
+    </div>
+
+    <div id="mainContentWrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">THAWEESAK<span>.</span>T</div>
+                <div class="nav-right">
+                    <div class="nav-links">
+                        <a href="#home"><span class="lang-th">หน้าแรก</span><span class="lang-en">HOME</span></a>
+                        <a href="#about"><span class="lang-th">โปรไฟล์</span><span class="lang-en">PROFILE</span></a>
+                        <a href="#skills"><span class="lang-th">ทักษะ</span><span class="lang-en">SKILLS</span></a>
+                        <a href="#experience"><span class="lang-th">ประสบการณ์</span><span class="lang-en">EXPERIENCE</span></a>
+                    </div>
+                    <button id="langToggle" class="lang-btn">TH / EN</button>
+                </div>
+            </div>
+        </nav>
+
+        <header class="hero-section" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content" data-aos="fade-right">
+                    <p class="it-support-label">Frontend / Backend / Full-stack / Automation</p>
+                    <h1 class="hero-name">Thaweesak Seeangrat</h1>
+                    <h2 class="hero-sub-title lang-th">นิสิตวิทยาการคอมพิวเตอร์</h2>
+                    <h2 class="hero-sub-title lang-en">Computer Science Student</h2>
+                    <div class="lang-th hero-description">นักศึกษาฝึกงานด้านไอทีที่มีประสบการณ์จริงในการพัฒนาและเชื่อมต่อระบบ รวมถึง REST APIs, LINE Messaging API และระบบ Automation สนใจงานด้านการพัฒนา Full-stack พร้อมเรียนรู้และทำงานร่วมกับทีมได้ทันทีหลังจบการศึกษา</div>
+                    <div class="lang-en hero-description">IT Intern with hands-on experience in developing and integrating real-world systems, including REST APIs, LINE Messaging API, and automation workflows. Fast learner, ready to start working immediately after completing the internship.</div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">KU82</span>
+                            <p class="stat-label">KASETSART UNIV.</p>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">GPA 2.51</span>
+                            <p class="stat-label lang-th">เกรดเฉลี่ย</p>
+                            <p class="stat-label lang-en">CURRENT GPA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-container" data-aos="fade-left">
+                    <div class="frame-outer">
+                        <div class="frame-inner">
+                            <img src="assets/img/profile.png" alt="Profile" class="profile-img">
+                        </div>
+                        <div class="ready-badge">
+                            <span class="lang-th">พร้อมร่วมงาน</span>
+                            <span class="lang-en">READY TO WORK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Profile -->
+            <section id="about" class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-address-card"></i> <span class="lang-th">ข้อมูลส่วนตัว</span><span class="lang-en">Profile Info</span></h2>
+                <div class="contact-grid-header">
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                        <span>194 Moo 7, Sakon Nakhon, Thailand</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                        <span>thaweesak.mos56@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                        <span>095-770-8032</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-brands fa-github"></i></div>
+                        <a href="https://github.com/thaweesakmos56-netizen" target="_blank">github.com/thaweesakmos56-netizen</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Skills -->
+            <section id="skills" class="resume-section">
+                <h2 class="section-title"><i class="fa-solid fa-code"></i> <span class="lang-th">ทักษะด้านเทคนิค</span><span class="lang-en">Technical Skills</span></h2>
+                <div class="grid">
+                    <div class="info-card" data-aos="fade-up">
+                        <h3><i class="fa-solid fa-desktop"></i> Frontend</h3>
+                        <ul class="skill-list">
+                            <li><i class="devicon-javascript-plain colored"></i> JS (React / Angular / HTML / CSS)</li>
+                            <li><i class="fa-solid fa-mobile-screen"></i> Responsive Web Design</li>
+                            <li><i class="fa-solid fa-puzzle-piece"></i> Component-based UI</li>
+                            <li><i class="fa-solid fa-gears"></i> State Management</li>
+                            <li><i class="fa-solid fa-link"></i> API Integration</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                        <h3><i class="fa-solid fa-server"></i> Backend</h3>
+                        <ul class="skill-list">
+                            <li><i class="devicon-python-plain colored"></i> Python (Flask) / Node.js</li>
+                            <li><i class="devicon-typescript-plain colored"></i> TypeScript / Java</li>
+                            <li><i class="fa-solid fa-key"></i> Auth & API Logic</li>
+                            <li><i class="fa-solid fa-plug"></i> Webhook Handling</li>
+                            <li><i class="fa-brands fa-line"></i> LINE API Integration</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fa-solid fa-toolbox"></i> Tools & Automation</h3>
+                        <ul class="skill-list">
+                            <li><i class="fa-solid fa-diagram-next"></i> n8n Workflow</li>
+                            <li><i class="devicon-docker-plain colored"></i> Docker / Git / PM2</li>
+                            <li><i class="devicon-wordpress-plain colored"></i> WordPress / Linux</li>
+                            <li><i class="fa-solid fa-microchip"></i> RESTful API Development</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" data-aos="fade-up" data-aos-delay="300">
+                        <h3><i class="fa-solid fa-language"></i> <span class="lang-th">ภาษา</span><span class="lang-en">Languages</span></h3>
+                        <ul class="skill-list">
+                            <li><span class="lang-th">ภาษาไทย: ดีเยี่ยม (Native)</span><span class="lang-en">Thai: Native</span></li>
+                            <li><span class="lang-th">ภาษาอังกฤษ: ปานกลาง (Intermediate)</span><span class="lang-en">English: Intermediate</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Experience -->
+            <section id="experience" class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> <span class="lang-th">ประสบการณ์ทำงาน</span><span class="lang-en">Work Experience</span></h2>
+                <div class="info-card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="highlight">Programmer (IT Intern)</h3>
+                            <span class="company">S. Nakhon Cement Thai Co., Ltd. (บริษัท สินค้าซีเมนต์ไทย จำกัด)</span>
+                        </div>
+                        <span class="date-badge">Nov 2025 – Mar 2026</span>
+                    </div>
+                    <ul class="exp-list lang-th">
+                        <li>พัฒนาและทดสอบระบบ REST API ด้วย Flask</li>
+                        <li>เชื่อมต่อ LINE Messaging API และส่ง Flex Message</li>
+                        <li>ออกแบบ Workflow Automation ด้วย n8n</li>
+                        <li>Deploy และจัดการระบบด้วย PM2 บน Server จริง</li>
+                        <li>พัฒนาส่วน Frontend เบื้องต้นด้วย Angular / JS</li>
+                    </ul>
+                    <ul class="exp-list lang-en">
+                        <li>Developed and tested REST APIs using Flask.</li>
+                        <li>Integrated LINE Messaging API and Flex Messages.</li>
+                        <li>Designed workflow automation using n8n.</li>
+                        <li>Deployed and managed production systems using PM2.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Soft Skills -->
+            <section class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-lightbulb"></i> <span class="lang-th">ทักษะเสริม</span><span class="lang-en">Soft Skills</span></h2>
+                <div class="grid">
+                    <div class="info-card">
+                        <ul class="skill-list">
+                            <li><i class="fa-solid fa-users"></i> <span class="lang-th">การสื่อสารและการทำงานเป็นทีม</span><span class="lang-en">Communication & Teamwork</span></li>
+                            <li><i class="fa-solid fa-brain"></i> <span class="lang-th">การแก้ปัญหาเฉพาะหน้าได้ดี</span><span class="lang-en">Problem-solving</span></li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <ul class="skill-list">
+                            <li><i class="fa-solid fa-bolt"></i> <span class="lang-th">เรียนรู้เทคโนโลยีใหม่ได้รวดเร็ว</span><span class="lang-en">Quick learner</span></li>
+                            <li><i class="fa-solid fa-check-double"></i> <span class="lang-th">มีความรับผิดชอบภายใต้แรงกดดัน</span><span class="lang-en">Responsible & Pressure</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-brands fa-github"></i> <span class="lang-th">ผลงานและโปรเจกต์</span><span class="lang-en">Portfolio</span></h2>
+                <div class="grid">
+                    <div class="info-card project-card" onclick="openProject('thaweesak-bot')">
+                        <div class="repo-header"><i class="fa-solid fa-robot repo-icon"></i><span class="repo-badge">Public</span></div>
+                        <h3>Thaweesak (Scorpion Bot)</h3>
+                        <div class="repo-lang"><span class="lang-dot js"></span> JavaScript</div>
+                    </div>
+                    <div class="info-card project-card" onclick="openProject('line-supplier')">
+                        <div class="repo-header"><i class="fa-solid fa-file-invoice-dollar repo-icon"></i><span class="repo-badge">Public</span></div>
+                        <h3>LINE-Supplier-Quotation</h3>
+                        <div class="repo-lang"><span class="lang-dot php"></span> PHP</div>
+                    </div>
+                    <div class="info-card project-card" onclick="openProject('smart-task')">
+                        <div class="repo-header"><i class="fa-solid fa-list-check repo-icon"></i><span class="repo-badge">Public</span></div>
+                        <h3>smart-task-manager</h3>
+                        <div class="repo-lang"><span class="lang-dot php"></span> PHP</div>
+                    </div>
+                    <div class="info-card project-card" onclick="openProject('sales-dash')">
+                        <div class="repo-header"><i class="fa-solid fa-chart-line repo-icon"></i><span class="repo-badge">Public</span></div>
+                        <h3>sales-dashboard</h3>
+                        <div class="repo-lang"><span class="lang-dot php"></span> PHP</div>
+                    </div>
+                    <div class="info-card project-card" onclick="openProject('shooting-game')">
+                        <div class="repo-header"><i class="fa-solid fa-gamepad repo-icon"></i><span class="repo-badge">Public</span></div>
+                        <h3>shooting-game</h3>
+                        <div class="repo-lang"><span class="lang-dot js"></span> JavaScript</div>
+                    </div>
+                    <div class="info-card project-card" onclick="openProject('realtime-chat')">
+                        <div class="repo-header"><i class="fa-solid fa-comments repo-icon"></i><span class="repo-badge">Public</span></div>
+                        <h3>Real-Time-Chat-App</h3>
+                        <div class="repo-lang"><span class="lang-dot js"></span> JavaScript</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education History -->
+            <section class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> <span class="lang-th">ประวัติการศึกษา</span><span class="lang-en">Education History</span></h2>
+                <div class="info-card">
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-calendar-days"></i> <span class="lang-th">2565 - 2569</span><span class="lang-en">2022 - 2026</span></li>
+                        <li style="align-items: flex-start;">
+                            <i class="fa-solid fa-university" style="margin-top: 5px;"></i>
+                            <div>
+                                <div class="lang-th">
+                                    <p style="color: #fff; font-size: 1.2rem; font-weight: 700;">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+                                    <p style="color: var(--accent-gold);">คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ | สาขาวิทยาการคอมพิวเตอร์</p>
+                                </div>
+                                <div class="lang-en">
+                                    <p style="color: #fff; font-size: 1.2rem; font-weight: 700;">Kasetsart University, Chalermphrakiat Sakon Nakhon Province Campus</p>
+                                    <p style="color: var(--accent-gold);">Faculty of Liberal Arts and Science | Bachelor of Science in Computer Science</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 THAWEESAK SEEAANGRAT | Sakon Nakhon, Thailand</p>
+        </footer>
+    </div>
+
+    <!-- ส่วนที่สำคัญมาก: โครงสร้างของหน้าต่าง Pop-up (Modal) -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content info-card">
+            <span class="close-modal" onclick="closeProject()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
