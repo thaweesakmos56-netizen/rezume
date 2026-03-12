@@ -220,7 +220,6 @@ window.addEventListener('scroll', function() {
         introHint.style.visibility = 'visible';
     }
 });
-
     });
     
 
