@@ -286,4 +286,17 @@ body { font-family: 'Sarabun', sans-serif; background-color: var(--bg-main); col
 .info-card { background: var(--bg-card); padding: 2.5rem; border-radius: 24px; border: 1px solid var(--border-color); backdrop-filter: blur(12px); transition: 0.4s; }
 .info-card li { color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
 
+
 footer { text-align: center; padding: 4rem 0; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+@media (max-width: 768px) {
+    .leaf-layer {
+        width: 160% !important; /* ขยายให้ใบไม้เลื่อนออกไปขอบมากขึ้น */
+    }
+    #leftL2, #rightL2 { left: 5% !important; right: 5% !important; }
+    #leftL3, #rightL3 { left: 10% !important; right: 10% !important; }
+    
+    /* ให้ Intro Hint อยู่ตำแหน่งที่มองเห็นง่าย */
+    .intro-hint {
+        bottom: 80px !important;
+    }
+}
