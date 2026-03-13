@@ -1,460 +1,392 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thaweesak Resume - Full Stack Developer</title>
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        /* =========================================
-           1. CORE VARIABLES & BASE
-           ========================================= */
-        :root {
-            --bg-main: #020617;
-            --bg-card: rgba(15, 23, 42, 0.7);
-            --accent-gold: #d4af37;
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --transition: 0.3s ease;
-        }
+<title>Thaweesak Resume - Full Stack Developer</title>
 
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { 
-            font-family: 'Sarabun', sans-serif; 
-            background-color: var(--bg-main); 
-            color: var(--text-primary); 
-            overflow-x: hidden; 
-            line-height: 1.6; 
-        }
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-        /* Language Toggle Logic */
-        .lang-th-active .lang-en { display: none !important; }
-        .lang-en-active .lang-th { display: none !important; }
+<style>
 
-        /* =========================================
-           2. INTRO LAYERS (Parallax)
-           ========================================= */
-        .intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; background: #000; overflow: hidden; }
-        .split-side { position: absolute; width: 50vw; height: 100vh; top: 0; overflow: visible; }
-        .left-side { left: 0; } .right-side { right: 0; }
+/* ===============================
+BASE
+===============================*/
 
-        .leaf-layer { position: absolute; width: 120%; height: 120%; background-size: contain; background-repeat: no-repeat; will-change: transform; }
-        @keyframes leafStagger { 0%, 100% { transform: translateY(-10px); } 50% { transform: translateY(10px); } }
+:root{
+--bg-main:#020617;
+--bg-card:rgba(15,23,42,0.7);
+--accent-gold:#d4af37;
+--text-primary:#fff;
+--text-secondary:#cbd5e1;
+--border-color:rgba(255,255,255,0.1);
+}
 
-        #leftL1 { left: 0; top: -2%; z-index: 10; animation: leafStagger 5s infinite; }
-        #rightL1 { right: 0; top: -2%; z-index: 10; animation: leafStagger 5s infinite; }
-        #leftL2 { left: 10%; top: -4%; z-index: 9; animation: leafStagger 7s infinite 2s; }
-        #rightL2 { right: 10%; top: -4%; z-index: 9; animation: leafStagger 7s infinite 2s; }
-        #leftL3 { left: 10%; top: 4%; z-index: 8; animation: leafStagger 6s infinite 1s; }
-        #rightL3 { right: 10%; top: 4%; z-index: 8; animation: leafStagger 6s infinite 1s; }
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+scroll-behavior:smooth;
+}
 
-        .left-side .leaf-layer { background-image: url('assets/img/plant4.png'); background-position: left center; }
-        .right-side .leaf-layer { background-image: url('assets/img/plant3.png'); background-position: right center; }
+body{
+font-family:'Sarabun',sans-serif;
+background:var(--bg-main);
+color:#fff;
+overflow-x:hidden;
+}
 
-        .intro-hint {
-            position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
-            text-align: center; color: #fff; z-index: 100; transition: opacity 0.5s, visibility 0.5s; pointer-events: none;
-        }
-        .intro-hint i { font-size: 2rem; margin-bottom: 10px; display: block; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+/* ===============================
+LANG
+===============================*/
 
-        /* Scene: Galaxy & Jesus */
-        .galaxy-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; display: flex; justify-content: center; align-items: center; pointer-events: none; }
-        .galaxy-bg { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(2,6,23,0) 0%, #000 85%), url('assets/img/galaczy.png') center/cover no-repeat; }
-        .zus-img { position: absolute; transform: translateY(-50%); width: 30%; z-index: 2; filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)); }
-        .zus-left { left: -45%; top: 55%; } .zus-right { right: -45%; top: 53%; }
-        .hikari-img { position: absolute; top: 45%; left: 48%; width: 300px; max-width: 80vw; z-index: 3; opacity: 0; filter: drop-shadow(0 0 30px var(--accent-gold)); }
-        
-        .jesus-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; opacity: 0; pointer-events: none; }
-        .jesus-bg { position: absolute; width: 100%; height: 100%; background: url('assets/img/back.png') center/cover no-repeat; }
-        .jesus-img { position: absolute; left: 50%; transform: translate(-50%, -50%); z-index: 21; }
-        .jesus-img.j1 { width: 300px; max-width: 70vw; } 
-        .jesus-img.j2 { width: 500px; max-width: 90vw; }
+.lang-th-active .lang-en{display:none!important}
+.lang-en-active .lang-th{display:none!important}
 
-        /* =========================================
-           3. MAIN CONTENT
-           ========================================= */
-        #mainContentWrapper { position: relative; opacity: 0; padding-top: 10500px; background-color: var(--bg-main); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+/* ===============================
+NAVBAR
+===============================*/
 
-        /* Navbar */
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; }
-        .logo span { color: var(--accent-gold); }
-        .nav-links { display: none; } /* ซ่อนในมือถือเพื่อความสะอาด หรือเปลี่ยนเป็น Hamburger ได้ */
-        @media (min-width: 768px) { .nav-links { display: block; } }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 600; margin-left: 1.5rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-gold); }
-        .lang-btn { background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 700; }
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+background:rgba(2,6,23,0.9);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(--border-color);
+}
 
-        /* Hero Section */
-        .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px 0; }
-        .hero-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
-        @media (min-width: 992px) { .hero-grid { grid-template-columns: 1.2fr 0.8fr; } }
+.nav-container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+max-width:1200px;
+margin:auto;
+padding:1rem 2rem;
+}
 
-        .hero-name { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 50%, var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-description { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; }
-        .hero-stats { display: flex; gap: 2rem; }
-        .stat-number { font-size: 1.2rem; font-weight: 800; color: #fff; }
-        .stat-label { font-size: 0.7rem; color: var(--accent-gold); font-weight: 600; }
+.logo{
+font-weight:800;
+font-size:1.4rem;
+}
 
-        .frame-outer { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 24px; border: 1px solid var(--border-color); max-width: 400px; margin: 0 auto; }
-        .frame-inner { border-radius: 15px; overflow: hidden; background: #000; display: flex; }
-        .profile-img { width: 100%; height: auto; }
+.logo span{color:var(--accent-gold)}
 
-        /* Grid System */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .resume-section { padding: 60px 0; }
-        .section-title { font-size: 1.8rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 15px; color: var(--accent-gold); }
+.nav-links a{
+margin-left:1.5rem;
+text-decoration:none;
+color:var(--text-secondary);
+font-size:0.9rem;
+}
 
-        .info-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border-color); backdrop-filter: blur(12px); height: 100%; }
-        .info-card h3 { margin-bottom: 1.2rem; font-size: 1.3rem; color: #fff; }
-        .skill-list { list-style: none; }
-        .skill-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+.nav-links a:hover{color:var(--accent-gold)}
 
-        /* Experience */
-        .card-header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
-        @media (min-width: 600px) { .card-header { flex-direction: row; justify-content: space-between; } }
-        .highlight { color: var(--accent-gold); font-weight: 700; }
-        .date-badge { background: rgba(212, 175, 55, 0.1); color: var(--accent-gold); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; align-self: flex-start; }
+/* ===============================
+HERO
+===============================*/
 
-        /* Portfolio */
-        .project-card { cursor: pointer; transition: transform 0.3s; }
-        .project-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
-        .repo-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
-        .repo-icon { font-size: 1.5rem; color: var(--accent-gold); }
-        .lang-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-        .js { background: #f1e05a; } .php { background: #4F5D95; }
+.hero-section{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding:140px 0 80px;
+}
 
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { width: 100%; max-width: 600px; position: relative; animation: modalFade 0.3s; }
-        @keyframes modalFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; } }
-        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 2.5rem; color: #fff; cursor: pointer; }
-        .visit-btn { display: inline-block; margin-top: 1.5rem; padding: 10px 20px; background: var(--accent-gold); color: #000; text-decoration: none; font-weight: 700; border-radius: 8px; }
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 2rem;
+}
 
-        /* Contact Box */
-        .contact-grid-header { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; }
-        .icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); }
-        .contact-item a { color: #fff; text-decoration: none; word-break: break-all; }
+.hero-grid{
+display:grid;
+grid-template-columns:1.2fr 0.8fr;
+gap:4rem;
+align-items:center;
+}
 
-        footer { text-align: center; padding: 3rem 0; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary); }
-    </style>
+.hero-name{
+font-size:clamp(2.5rem,6vw,5rem);
+font-weight:800;
+line-height:1.1;
+background:linear-gradient(135deg,#fff 50%,var(--accent-gold));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-description{
+margin-top:1rem;
+color:var(--text-secondary);
+}
+
+.frame-outer{
+background:rgba(255,255,255,0.05);
+padding:10px;
+border-radius:20px;
+}
+
+.frame-inner{
+overflow:hidden;
+border-radius:15px;
+}
+
+.profile-img{
+width:100%;
+max-width:350px;
+}
+
+/* ===============================
+GRID
+===============================*/
+
+.resume-section{
+padding:70px 0;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+gap:2rem;
+}
+
+.info-card{
+background:var(--bg-card);
+padding:2rem;
+border-radius:20px;
+border:1px solid var(--border-color);
+}
+
+/* ===============================
+CONTACT
+===============================*/
+
+.contact-grid-header{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:1.2rem;
+margin-top:2rem;
+}
+
+.contact-item{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.icon-box{
+width:42px;
+height:42px;
+background:rgba(212,175,55,0.1);
+border:1px solid rgba(212,175,55,0.3);
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:var(--accent-gold);
+}
+
+/* ===============================
+PROJECT CARD
+===============================*/
+
+.project-card{
+cursor:pointer;
+}
+
+.repo-header{
+display:flex;
+justify-content:space-between;
+margin-bottom:1rem;
+}
+
+.repo-icon{
+font-size:1.4rem;
+color:var(--accent-gold);
+}
+
+.repo-lang{
+margin-top:1rem;
+font-size:0.85rem;
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.lang-dot{
+width:10px;
+height:10px;
+border-radius:50%;
+}
+
+.lang-dot.js{background:#f1e05a}
+.lang-dot.php{background:#4F5D95}
+
+/* ===============================
+MODAL
+===============================*/
+
+.modal{
+display:none;
+position:fixed;
+z-index:10001;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(8px);
+align-items:center;
+justify-content:center;
+}
+
+.modal-content{
+width:90%;
+max-width:600px;
+}
+
+.visit-btn{
+display:inline-block;
+margin-top:1.5rem;
+padding:10px 25px;
+background:var(--accent-gold);
+color:#000;
+font-weight:700;
+border-radius:8px;
+text-decoration:none;
+}
+
+/* ===============================
+MOBILE RESPONSIVE
+===============================*/
+
+@media (max-width:768px){
+
+.nav-links{
+display:none;
+}
+
+.hero-grid{
+grid-template-columns:1fr;
+text-align:center;
+gap:2rem;
+}
+
+.profile-img{
+max-width:260px;
+margin:auto;
+}
+
+.hero-name{
+font-size:2.3rem;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.info-card{
+padding:1.6rem;
+}
+
+.contact-grid-header{
+grid-template-columns:1fr;
+}
+
+.resume-section{
+padding:60px 0;
+}
+
+.hero-section{
+padding-top:120px;
+}
+
+}
+
+</style>
 </head>
 
 <body class="lang-th-active">
 
-    <!-- 1. Intro Overlay -->
-    <div class="intro-overlay" id="introOverlay">
-        <div class="split-side left-side">
-            <div class="leaf-layer" id="leftL1"></div>
-            <div class="leaf-layer" id="leftL2"></div>
-            <div class="leaf-layer" id="leftL3"></div>
-        </div>
-        <div class="split-side right-side">
-            <div class="leaf-layer" id="rightL1"></div>
-            <div class="leaf-layer" id="rightL2"></div>
-            <div class="leaf-layer" id="rightL3"></div>
-        </div>
-        <div class="galaxy-scene" id="galaxyScene">
-            <div class="galaxy-bg"></div> 
-            <img src="assets/img/zus1.png" class="zus-img zus-left" id="zusLeft">
-            <img src="assets/img/zus2.png" class="zus-img zus-right" id="zusRight">
-            <img src="assets/img/hikari.png" class="hikari-img" id="hikari">
-        </div>
-        <div class="jesus-scene" id="jesusScene">
-            <div class="jesus-bg"></div>
-            <img src="assets/img/jesus1.png" class="jesus-img j1" id="jesus1">
-            <img src="assets/img/jesus2.png" class="jesus-img j2" id="jesus2">
-        </div>
-        <div class="intro-hint" id="introHint">
-            <i class="fa-solid fa-chevron-down"></i>
-            <p class="lang-th">เลื่อนลงเพื่อสำรวจ</p>
-            <p class="lang-en">SCROLL TO EXPLORE</p>
-        </div>
-    </div>
+<nav class="navbar">
+<div class="nav-container">
 
-    <!-- 2. Main Content -->
-    <div id="mainContentWrapper">
-        <nav class="navbar">
-            <div class="container nav-container">
-                <a href="#" class="logo">THAWEESAK<span>.</span>T</a>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <div class="nav-links">
-                        <a href="#home"><span class="lang-th">หน้าแรก</span><span class="lang-en">HOME</span></a>
-                        <a href="#about"><span class="lang-th">โปรไฟล์</span><span class="lang-en">PROFILE</span></a>
-                        <a href="#skills"><span class="lang-th">ทักษะ</span><span class="lang-en">SKILLS</span></a>
-                    </div>
-                    <button id="langToggle" class="lang-btn">TH / EN</button>
-                </div>
-            </div>
-        </nav>
+<div class="logo">THAWEESAK<span>.</span>T</div>
 
-        <header class="hero-section" id="home">
-            <div class="container hero-grid">
-                <div class="hero-content" data-aos="fade-right">
-                    <p style="color: var(--accent-gold); font-weight: 700; margin-bottom: 10px; font-size: 0.9rem;">Frontend / Backend / Full-stack</p>
-                    <h1 class="hero-name">Thaweesak Seeangrat</h1>
-                    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;" class="lang-th">นิสิตวิทยาการคอมพิวเตอร์</h2>
-                    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;" class="lang-en">Computer Science Student</h2>
-                    <p class="hero-description lang-th">นักศึกษาฝึกงานด้านไอทีที่มีประสบการณ์จริงในการพัฒนาและเชื่อมต่อระบบ รวมถึง REST APIs, LINE Messaging API และระบบ Automation สนใจงานด้านการพัฒนา Full-stack พร้อมเรียนรู้และทำงานร่วมกับทีมได้ทันทีหลังจบการศึกษา</p>
-                    <p class="hero-description lang-en">IT Intern with hands-on experience in developing and integrating real-world systems, including REST APIs, LINE Messaging API, and automation workflows. Ready to start working immediately.</p>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-box">
-                            <span class="stat-number">KU82</span>
-                            <p class="stat-label">KASETSART UNIV.</p>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-number">GPA 2.51</span>
-                            <p class="stat-label lang-th">เกรดเฉลี่ย</p>
-                            <p class="stat-label lang-en">CURRENT GPA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image-container" data-aos="fade-left">
-                    <div class="frame-outer">
-                        <div class="frame-inner"><img src="assets/img/profile.png" alt="Profile" class="profile-img"></div>
-                    </div>
-                </div>
-            </div>
-        </header>
+<div class="nav-links">
+<a href="#home">HOME</a>
+<a href="#about">PROFILE</a>
+<a href="#skills">SKILLS</a>
+<a href="#experience">EXPERIENCE</a>
+</div>
 
-        <main class="container">
-            <!-- Contact -->
-            <section id="about" class="resume-section" data-aos="fade-up">
-                <h2 class="section-title"><i class="fa-solid fa-address-card"></i> <span class="lang-th">ข้อมูลส่วนตัว</span><span class="lang-en">Profile Info</span></h2>
-                <div class="contact-grid-header">
-                    <div class="contact-item">
-                        <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
-                        <span>thaweesak.mos56@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
-                        <span>095-770-8032</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon-box"><i class="fa-brands fa-github"></i></div>
-                        <a href="https://github.com/thaweesakmos56-netizen" target="_blank">github.com/thaweesakmos56-netizen</a>
-                    </div>
-                </div>
-            </section>
+</div>
+</nav>
 
-            <!-- Skills -->
-            <section id="skills" class="resume-section">
-                <h2 class="section-title"><i class="fa-solid fa-code"></i> <span class="lang-th">ทักษะด้านเทคนิค</span><span class="lang-en">Technical Skills</span></h2>
-                <div class="grid">
-                    <div class="info-card" data-aos="fade-up">
-                        <h3>Frontend</h3>
-                        <ul class="skill-list">
-                            <li><i class="devicon-javascript-plain colored"></i> JS (React / Angular)</li>
-                            <li><i class="fa-solid fa-mobile-screen"></i> Responsive Web Design</li>
-                        </ul>
-                    </div>
-                    <div class="info-card" data-aos="fade-up" data-aos-delay="100">
-                        <h3>Backend</h3>
-                        <ul class="skill-list">
-                            <li><i class="devicon-python-plain colored"></i> Python (Flask) / Node.js</li>
-                            <li><i class="fa-brands fa-line"></i> LINE API Integration</li>
-                        </ul>
-                    </div>
-                    <div class="info-card" data-aos="fade-up" data-aos-delay="200">
-                        <h3>Automation</h3>
-                        <ul class="skill-list">
-                            <li><i class="fa-solid fa-diagram-next"></i> n8n Workflow</li>
-                            <li><i class="devicon-docker-plain colored"></i> Docker / Git / PM2</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+<header class="hero-section" id="home">
+<div class="container hero-grid">
 
-            <!-- Experience -->
-            <section id="experience" class="resume-section" data-aos="fade-up">
-                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> <span class="lang-th">ประสบการณ์ทำงาน</span><span class="lang-en">Work Experience</span></h2>
-                <div class="info-card">
-                    <div class="card-header">
-                        <div>
-                            <h3 class="highlight">Programmer (IT Intern)</h3>
-                            <p style="font-size: 0.9rem; color: #ccc;">S. Nakhon Cement Thai Co., Ltd.</p>
-                        </div>
-                        <span class="date-badge">Nov 2025 – Mar 2026</span>
-                    </div>
-                    <ul class="skill-list lang-th">
-                        <li>• พัฒนาและทดสอบ REST API ด้วย Flask</li>
-                        <li>• เชื่อมต่อ LINE Messaging API และส่ง Flex Message</li>
-                        <li>• ออกแบบ Workflow Automation ด้วย n8n</li>
-                    </ul>
-                    <ul class="skill-list lang-en">
-                        <li>• Developed REST APIs using Flask.</li>
-                        <li>• Integrated LINE Messaging API.</li>
-                        <li>• Designed automation using n8n.</li>
-                    </ul>
-                </div>
-            </section>
+<div>
+<h1 class="hero-name">Thaweesak Seeangrat</h1>
 
-            <!-- Portfolio -->
-            <section id="portfolio" class="resume-section" data-aos="fade-up">
-                <h2 class="section-title"><i class="fa-brands fa-github"></i> <span class="lang-th">ผลงาน</span><span class="lang-en">Portfolio</span></h2>
-                <div class="grid">
-                    <div class="info-card project-card" onclick="openProject('thaweesak-bot')">
-                        <div class="repo-header"><i class="fa-solid fa-robot repo-icon"></i><span class="date-badge">Public</span></div>
-                        <p style="font-weight: 700;">Thaweesak (Scorpion Bot)</p>
-                        <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
-                    </div>
-                    <div class="info-card project-card" onclick="openProject('line-supplier')">
-                        <div class="repo-header"><i class="fa-solid fa-file-invoice-dollar repo-icon"></i><span class="date-badge">Public</span></div>
-                        <p style="font-weight: 700;">LINE-Supplier-Quotation</p>
-                        <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
-                    </div>
-                    <div class="info-card project-card" onclick="openProject('smart-task')">
-                        <div class="repo-header"><i class="fa-solid fa-list-check repo-icon"></i><span class="date-badge">Public</span></div>
-                        <p style="font-weight: 700;">Smart-Task-Manager</p>
-                        <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
-                    </div>
-                </div>
-            </section>
-        </main>
+<p class="hero-description">
+IT Intern with hands-on experience in developing and integrating real-world systems, including REST APIs, LINE Messaging API, and automation workflows.
+</p>
+</div>
 
-        <footer>
-            <p>© 2026 THAWEESAK SEEAANGRAT | Sakon Nakhon, Thailand</p>
-        </footer>
-    </div>
+<div>
+<div class="frame-outer">
+<div class="frame-inner">
+<img src="assets/img/profile.png" class="profile-img">
+</div>
+</div>
+</div>
 
-    <!-- 3. Modal -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content info-card">
-            <span class="close-modal" onclick="closeProject()">&times;</span>
-            <div id="modalBody"></div>
-        </div>
-    </div>
+</div>
+</header>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // 1. Initialize
-        AOS.init({ duration: 1000, once: false });
+<main class="container">
 
-        // 2. Language Toggle
-        const langBtn = document.getElementById('langToggle');
-        langBtn.addEventListener('click', () => {
-            document.body.classList.toggle('lang-th-active');
-            document.body.classList.toggle('lang-en-active');
-        });
+<section class="resume-section" id="about">
 
-        // 3. Project Data & Modal
-        const projectData = {
-            'thaweesak-bot': {
-                title: 'Thaweesak (LINE Scorpion Chatbot)',
-                th: 'แชทบอท LINE ให้ข้อมูลความรู้เกี่ยวกับแมงป่องช้าง พัฒนาด้วย Node.js',
-                en: 'LINE Chatbot for Asian Forest Scorpion information, built with Node.js.',
-                link: 'https://github.com/thaweesakmos56-netizen/Thaweesak'
-            },
-            'line-supplier': {
-                title: 'LINE Supplier Quotation',
-                th: 'ระบบขอใบเสนอราคาผ่าน LINE พร้อมหลังบ้าน PHP',
-                en: 'Quotation system via LINE API with PHP backend.',
-                link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System'
-            },
-            'smart-task': {
-                title: 'Smart Task Manager',
-                th: 'แอปจัดการงานในทีม ติดตามสถานะ พัฒนาด้วย PHP',
-                en: 'Team task management app built with PHP.',
-                link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager'
-            }
-        };
+<h2>Profile</h2>
 
-        window.openProject = function(id) {
-            const project = projectData[id];
-            const isThai = document.body.classList.contains('lang-th-active');
-            document.getElementById('modalBody').innerHTML = `
-                <h2 style="color:var(--accent-gold); margin-bottom:15px;">${project.title}</h2>
-                <p style="color:#fff; margin-bottom:20px;">${isThai ? project.th : project.en}</p>
-                <a href="${project.link}" target="_blank" class="visit-btn">Visit GitHub</a>
-            `;
-            document.getElementById('projectModal').style.display = 'flex';
-        };
+<div class="contact-grid-header">
 
-        window.closeProject = () => document.getElementById('projectModal').style.display = 'none';
-        window.onclick = (e) => { if(e.target == document.getElementById('projectModal')) closeProject(); };
+<div class="contact-item">
+<div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+<span>Thailand</span>
+</div>
 
-        // 4. Scroll Parallax Logic (Original Conditions)
-        const introOverlay = document.getElementById('introOverlay');
-        const contentWrapper = document.getElementById('mainContentWrapper');
-        const l1 = [document.getElementById('leftL1'), document.getElementById('rightL1')];
-        const l2 = [document.getElementById('leftL2'), document.getElementById('rightL2')];
-        const l3 = [document.getElementById('leftL3'), document.getElementById('rightL3')];
-        const galaxyScene = document.getElementById('galaxyScene');
-        const zusLeft = document.getElementById('zusLeft');
-        const zusRight = document.getElementById('zusRight');
-        const hikari = document.getElementById('hikari');
-        const jesusScene = document.getElementById('jesusScene');
-        const jesus1 = document.getElementById('jesus1');
-        const jesus2 = document.getElementById('jesus2');
-        const introHint = document.getElementById('introHint');
+<div class="contact-item">
+<div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+<span>thaweesak.mos56@gmail.com</span>
+</div>
 
-        const zusStart = 600, zusTouch = 3500, hikariStart = 3200;
-        const jesusStart = 5000, jesusMiddle = 7500, fadeOutStart = 8500, fadeOutEnd = 10000;
+<div class="contact-item">
+<div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+<span>095-770-8032</span>
+</div>
 
-        window.addEventListener('scroll', () => {
-            const s = window.scrollY;
+</div>
 
-            // Leaves
-            l1[0].style.transform = `translateX(-${s * 1.5}px)`;
-            l1[1].style.transform = `translateX(${s * 1.5}px)`;
-            l2[0].style.transform = `translateX(-${s * 0.8}px)`;
-            l2[1].style.transform = `translateX(${s * 0.8}px)`;
+</section>
 
-            // Galaxy & Zus
-            let gAlpha = 0, zProg = 0;
-            if (s > zusStart && s < jesusStart) {
-                gAlpha = Math.min((s - zusStart) / 1000, 1);
-                zProg = Math.min((s - zusStart) / (zusTouch - zusStart), 1);
-            } else if (s >= jesusStart) {
-                gAlpha = 1 - (s - jesusStart) / 500;
-            }
-            galaxyScene.style.opacity = gAlpha;
-            zusLeft.style.left = (-45 + zProg * 67) + '%';
-            zusRight.style.right = (-45 + zProg * 67) + '%';
+</main>
 
-            // Hikari
-            let hAlpha = (s > hikariStart && s < jesusStart) ? Math.min((s - hikariStart) / 500, 1) : (s >= jesusStart ? 1 - (s-jesusStart)/500 : 0);
-            hikari.style.opacity = hAlpha;
-            hikari.style.transform = `translate(-50%, -50%) rotate(${s * 0.2}deg)`;
+<footer style="text-align:center;padding:3rem 0;border-top:1px solid var(--border-color)">
+© 2026 THAWEESAK SEEANGRAT
+</footer>
 
-            // Jesus
-            let jAlpha = 0, jProg = 0;
-            if (s > jesusStart) {
-                jAlpha = Math.min((s - jesusStart) / 500, 1);
-                jProg = Math.min((s - jesusStart) / (jesusMiddle - jesusStart), 1);
-                if (s > fadeOutStart) jAlpha = 1 - (s - fadeOutStart) / (fadeOutEnd - fadeOutStart);
-            }
-            jesusScene.style.opacity = jAlpha;
-            jesus1.style.top = (-100 + jProg * 150) + '%';
-            jesus1.style.transform = `translate(-50%, -50%) scale(${0.5 + jProg * 1.5})`;
-            jesus2.style.top = (200 - jProg * 150) + '%';
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-            // Main Transition
-            if (s < fadeOutEnd) {
-                let p = Math.max(0, (s - fadeOutStart) / (fadeOutEnd - fadeOutStart));
-                introOverlay.style.opacity = 1 - p;
-                contentWrapper.style.opacity = p;
-                introOverlay.style.display = p > 0.9 ? 'none' : 'block';
-            } else {
-                introOverlay.style.display = 'none';
-                contentWrapper.style.opacity = 1;
-            }
-            
-            introHint.style.opacity = s > 50 ? '0' : '1';
-        });
-    </script>
+<script>
+AOS.init();
+</script>
+
 </body>
 </html>
