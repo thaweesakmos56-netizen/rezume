@@ -458,30 +458,84 @@
             }
 
            // Jesus
-let jAlpha = 0, jProg = 0;
-if (scrollValue > jesusStart) {
-    jAlpha = Math.min((scrollValue - jesusStart) / 500, 1);
-    jProg = Math.min((scrollValue - jesusStart) / (jesusMiddle - jesusStart), 1);
-    if (scrollValue > fadeOutStart) jAlpha = 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
-}
+// ==========================================
+    // 6.5 Jesus Logic (ปรับตามโค้ดที่ 1)
+    // ==========================================
+    let jesusAlpha = 0;
+    let jesusProgress = 0;
+    if (scrollValue > jesusStart) {
+        // Fade in 
+        jesusAlpha = (scrollValue - jesusStart) / 500; 
+        if (jesusAlpha > 1) jesusAlpha = 1;
+        
+        // Progress สำหรับตำแหน่ง
+        jesusProgress = (scrollValue - jesusStart) / (jesusMiddle - jesusStart);
+        if (jesusProgress > 1) jesusProgress = 1;
 
-if (jesusScene) {
-    jesusScene.style.opacity = jAlpha;
-    if (jesus1) {
-        jesus1.style.top = (-100 + jProg * 250) + '%';
-        // ถ้าต้องการให้ jesus1 หมุนด้วย (เลือกใส่หรือไม่ใส่ก็ได้)
-        // jesus1.style.transform = `translate(-50%, -50%) rotate(${-scrollValue * 0.05}deg)`;
+        // Fade out เมื่อถึงจุดจบ
+        if (scrollValue > fadeOutStart) {
+            jesusAlpha = 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+        }
     }
-    if (jesus2) {
-        jesus2.style.top = (200 - jProg * 150) + '%';
-        // เพิ่มบรรทัดนี้เพื่อให้ jesus2 หมุนครับ (0.1 คือความเร็วในการหมุน ปรับเปลี่ยนได้)
-        jesus2.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.1}deg)`;
-    }
-}
+
+    // คำนวณตำแหน่งและค่าการหมุนตามโค้ดที่ 1
+    const j1Pos = -100 + (jesusProgress * 250); // วิ่งจากบนลงล่าง (-100 ถึง 150)
+    const j1Scale = 0.5 + (jesusProgress * 1.5); 
+    const j2Pos = 200 - (jesusProgress * 150);  // วิ่งจากล่างขึ้นบน (200 ถึง 50)
+    const j2Rotate = scrollValue * 0.1;         // หมุนตามการ Scroll เหมือน Hikari
+
+    // ==========================================
+    // 6.6 Update UI
+    // ==========================================
+    requestAnimationFrame(() => {
+        // ... (โค้ดส่วน Leaf, Galaxy, Zus, Hikari คงเดิม) ...
+        if (l1[0]) {
+            l1[0].style.transform = `translateX(-${s1}px)`;
+            l2[0].style.transform = `translateX(-${s2}px)`;
+            l3[0].style.transform = `translateX(-${s3}px)`;
+            l1[1].style.transform = `translateX(${s1}px)`;
+            l2[1].style.transform = `translateX(${s2}px)`;
+            l3[1].style.transform = `translateX(${s3}px)`;
+        }
+
+        if (galaxyScene) galaxyScene.style.opacity = galaxyAlpha;
+        if (zusLeft) zusLeft.style.left = moveX + '%';
+        if (zusRight) zusRight.style.right = moveX + '%';
+        if (hikari) {
+            hikari.style.opacity = hikariAlpha;
+            hikari.style.transform = `translate(-50%, -50%) rotate(${hikariRotation}deg)`;
+        }
+
+        // ส่วนที่แก้ไข: Jesus Scene Update
+        if (jesusScene) {
+            jesusScene.style.opacity = jesusAlpha;
+            if (jesus1) {
+                jesus1.style.top = j1Pos + '%';
+                // คงค่า scale และเพิ่ม rotate เล็กน้อยหากต้องการ (ตามโค้ดที่ 2 เดิม)
+                jesus1.style.transform = `translate(-50%, -50%) scale(${j1Scale})`;
+            }
+            if (jesus2) {
+                jesus2.style.top = j2Pos + '%';
+                // เปลี่ยนจากหมุนตาม Progress เป็นหมุนตาม ScrollValue (ตามโค้ดที่ 1)
+                jesus2.style.transform = `translate(-50%, -50%) rotate(${j2Rotate}deg)`;
+            }
+        }
+
+        if (introHint) {
+            if (scrollValue > 50) {
+                introHint.style.opacity = '0';
+                introHint.style.visibility = 'hidden';
+            } else {
+                introHint.style.opacity = '1';
+                introHint.style.visibility = 'visible';
+            }
+        }
+    });
             if (introHint) introHint.style.opacity = scrollValue > 50 ? '0' : '1';
         });
     </script>
 </body>
 </html>
+
 
 
