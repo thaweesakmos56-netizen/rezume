@@ -30,111 +30,111 @@
         .lang-en-active .lang-th { display: none !important; }
 
         /* =========================================
-           2. INTRO OVERLAY (Leaf Curtain Fix)
+           2. INTRO OVERLAY (Start with Black Screen)
            ========================================= */
-        .intro-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; background: #000; overflow: hidden; }
-        .split-side { position: absolute; width: 50vw; height: 100vh; top: 0; overflow: visible; }
-        .left-side { left: 0; } .right-side { right: 0; }
-
-        .leaf-layer { 
-            position: absolute; 
-            width: 140%; 
-            height: 130vh; 
-            top: -15vh;
-            background-size: contain; 
-            background-repeat: no-repeat; 
-            will-change: transform; 
-            transition: transform 0.1s ease-out; /* เพิ่มความลื่นไหล */
+        .intro-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100vh; 
+            z-index: 9999; 
+            background: #000; /* จอสีดำ */
+            overflow: hidden; 
         }
 
-        /* ปรับปรุงเฉพาะมือถือ: ให้ใบไม้อยู่ขอบจอมากขึ้นตั้งแต่เริ่ม และสูงพ้นจอ */
-        @media (max-width: 768px) {
-            .leaf-layer {
-                width: 160%; 
-                height: 150vh;
-                top: -25vh !important;
-            }
-            /* ผลักใบไม้เริ่มต้นให้ออกไปทางขอบจอนิดนึง ไม่ให้ทับกันตรงกลาง */
-            .left-side .leaf-layer { left: -20%; }
-            .right-side .leaf-layer { right: -20%; }
-        }
-
-        @keyframes leafStagger { 0%, 100% { margin-top: -10px; } 50% { margin-top: 10px; } }
-
-        #leftL1 { left: 0; top: -2%; z-index: 10; animation: leafStagger 5s infinite; }
-        #rightL1 { right: 0; top: -2%; z-index: 10; animation: leafStagger 5s infinite; }
-        #leftL2 { left: 5%; top: -4%; z-index: 9; animation: leafStagger 7s infinite 2s; }
-        #rightL2 { right: 5%; top: -4%; z-index: 9; animation: leafStagger 7s infinite 2s; }
-        #leftL3 { left: 10%; top: 4%; z-index: 8; animation: leafStagger 6s infinite 1s; }
-        #rightL3 { right: 10%; top: 4%; z-index: 8; animation: leafStagger 6s infinite 1s; }
-
-        .left-side .leaf-layer { background-image: url('assets/img/plant4.png'); background-position: left center; }
-        .right-side .leaf-layer { background-image: url('assets/img/plant3.png'); background-position: right center; }
-
-        /* Scene: Galaxy & Jesus */
+        /* Scene: Galaxy & Jesus (เหมือนเดิม) */
         .galaxy-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; display: flex; justify-content: center; align-items: center; pointer-events: none; }
         .galaxy-bg { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(2,6,23,0) 0%, #000 85%), url('assets/img/galaczy.png') center/cover no-repeat; }
-        .zus-img { position: absolute; transform: translateY(-50%); width: 45%; max-width: 400px; z-index: 2; filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)); }
-        .zus-left { left: -55%; top: 55%; } .zus-right { right: -55%; top: 53%; }
-        .hikari-img { position: absolute; top: 45%; left: 50%; width: 85%; max-width: 450px; z-index: 3; opacity: 0; filter: drop-shadow(0 0 30px var(--accent-gold)); }
+        .zus-img { position: absolute; transform: translateY(-50%); width: 40%; max-width: 400px; z-index: 2; filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)); }
+        .zus-left { left: -50%; top: 55%; } .zus-right { right: -50%; top: 53%; }
+        .hikari-img { position: absolute; top: 45%; left: 50%; width: 80%; max-width: 400px; z-index: 3; opacity: 0; filter: drop-shadow(0 0 30px var(--accent-gold)); }
 
         .jesus-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; opacity: 0; pointer-events: none; }
         .jesus-bg { position: absolute; width: 100%; height: 100%; background: url('assets/img/back.png') center/cover no-repeat; }
         .jesus-img { position: absolute; left: 50%; transform: translate(-50%, -50%); z-index: 21; }
-        .jesus-img.j1 { width: 75%; max-width: 320px; } .jesus-img.j2 { width: 95%; max-width: 600px; }
+        .jesus-img.j1 { width: 70%; max-width: 320px; } .jesus-img.j2 { width: 90%; max-width: 600px; }
 
-        .intro-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 100; transition: var(--transition); color: #fff; }
-        .intro-hint i { font-size: 1.5rem; animation: bounce 2s infinite; display: block; }
+        .intro-hint { 
+            position: absolute; 
+            bottom: 50px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: center; 
+            z-index: 100; 
+            transition: var(--transition); 
+            color: #fff; 
+        }
+        .intro-hint i { font-size: 1.5rem; animation: bounce 2s infinite; display: block; margin-bottom: 10px; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
 
         /* =========================================
-           3. MAIN CONTENT
+           3. MAIN CONTENT (เหมือนเดิม)
            ========================================= */
-        #mainContentWrapper { position: relative; opacity: 0; padding-top: 10500px; background-color: var(--bg-main); width: 100%; }
+        #mainContentWrapper { position: relative; opacity: 0; padding-top: 10500px; background-color: var(--bg-main); }
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
         .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; }
         .logo span { color: var(--accent-gold); }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-links { display: none; }
+        @media (min-width: 992px) { .nav-links { display: flex; gap: 1.5rem; } .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; } }
         .lang-btn { background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.8rem; }
 
         .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px 0; }
         .hero-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
         @media (min-width: 992px) { .hero-grid { grid-template-columns: 1.2fr 0.8fr; } }
 
-        .hero-name { font-size: clamp(2.3rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 50%, var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-name { font-size: clamp(2.2rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 50%, var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-description { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; }
-        
+        .hero-stats { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+        .stat-number { font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .stat-label { font-size: 0.75rem; color: var(--accent-gold); font-weight: 600; }
+
+        .frame-outer { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 20px; border: 1px solid var(--border-color); max-width: 350px; margin: 0 auto; }
+        .frame-inner { border-radius: 12px; overflow: hidden; display: flex; background: #000; }
+        .profile-img { width: 100%; height: auto; }
+        .ready-badge { margin-top: 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #fff; padding: 10px; border-radius: 12px; font-weight: 700; text-align: center; font-size: 0.9rem; }
+
+        .resume-section { padding: 50px 0; border-bottom: 1px solid var(--border-color); }
+        .section-title { font-size: 1.8rem; margin-bottom: 2rem; color: var(--accent-gold); display: flex; align-items: center; gap: 12px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .info-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border-color); backdrop-filter: blur(12px); }
+        .skill-list { list-style: none; }
+        .skill-list li { color: #fff; margin-bottom: 10px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+
+        .contact-grid-header { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .contact-item { display: flex; align-items: center; gap: 12px; }
+        .icon-box { width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); }
+        .contact-item a { color: #fff; text-decoration: none; font-size: 0.85rem; word-break: break-all; }
 
         .project-card { cursor: pointer; transition: 0.3s; }
         .project-card:hover { border-color: var(--accent-gold); transform: translateY(-5px); }
+        .repo-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .repo-icon { font-size: 1.3rem; color: var(--accent-gold); }
+        .lang-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .js { background: #f1e05a; } .php { background: #4F5D95; }
 
-        .modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1.5rem; }
-        .modal-content { width: 100%; max-width: 550px; position: relative; animation: modalFade 0.3s ease; }
-        @keyframes modalFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .close-modal { position: absolute; right: 20px; top: 15px; font-size: 2.5rem; color: #fff; cursor: pointer; }
-        .visit-btn { display: inline-block; margin-top: 1.5rem; padding: 12px 25px; background: var(--accent-gold); color: #000; text-decoration: none; font-weight: 800; border-radius: 10px; width: 100%; text-align: center; }
+        .modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1rem; }
+        .modal-content { width: 100%; max-width: 550px; position: relative; }
+        .close-modal { position: absolute; right: 15px; top: 10px; font-size: 2rem; color: #fff; cursor: pointer; }
+        .visit-btn { display: inline-block; margin-top: 1.5rem; padding: 10px 20px; background: var(--accent-gold); color: #000; text-decoration: none; font-weight: 700; border-radius: 8px; width: 100%; text-align: center; }
 
-        footer { text-align: center; padding: 3rem 0; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.8rem; }
+        footer { text-align: center; padding: 3rem 0; color: var(--text-secondary); font-size: 0.8rem; }
     </style>
 </head>
 
 <body class="lang-th-active">
 
-    <!-- 1. Intro Overlay -->
+    <!-- 1. Intro Overlay (Black screen start) -->
     <div class="intro-overlay" id="introOverlay">
-        <div class="split-side left-side">
-            <div class="leaf-layer" id="leftL1"></div>
-            <div class="leaf-layer" id="leftL2"></div>
-            <div class="leaf-layer" id="leftL3"></div>
-        </div>
-        <div class="split-side right-side">
-            <div class="leaf-layer" id="rightL1"></div>
-            <div class="leaf-layer" id="rightL2"></div>
-            <div class="leaf-layer" id="rightL3"></div>
-        </div>
         
         <div class="galaxy-scene" id="galaxyScene">
             <div class="galaxy-bg"></div> 
@@ -162,6 +162,11 @@
             <div class="container nav-container">
                 <a href="#home" class="logo">THAWEESAK<span>.</span>T</a>
                 <div class="nav-right">
+                    <div class="nav-links">
+                        <a href="#home"><span class="lang-th">หน้าแรก</span><span class="lang-en">HOME</span></a>
+                        <a href="#about"><span class="lang-th">โปรไฟล์</span><span class="lang-en">PROFILE</span></a>
+                        <a href="#skills"><span class="lang-th">ทักษะ</span><span class="lang-en">SKILLS</span></a>
+                    </div>
                     <button id="langToggle" class="lang-btn">TH / EN</button>
                 </div>
             </div>
@@ -170,54 +175,127 @@
         <header class="hero-section" id="home">
             <div class="container hero-grid">
                 <div class="hero-content" data-aos="fade-right">
+                    <p style="color: var(--accent-gold); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">Frontend / Backend / Full-stack</p>
                     <h1 class="hero-name">Thaweesak Seeangrat</h1>
-                    <h2 style="font-size: 1.3rem; margin-bottom: 1.5rem;" class="lang-th">นิสิตวิทยาการคอมพิวเตอร์</h2>
-                    <h2 style="font-size: 1.3rem; margin-bottom: 1.5rem;" class="lang-en">Computer Science Student</h2>
-                    <p class="hero-description lang-th">นักศึกษาฝึกงานด้านไอทีที่มีประสบการณ์จริงในการพัฒนาและเชื่อมต่อระบบ รวมถึง REST APIs, LINE Messaging API สนใจงานด้าน Full-stack</p>
-                    <p class="hero-description lang-en">IT Intern with hands-on experience in REST APIs and LINE Messaging API. Fast learner and ready to contribute.</p>
+                    <h2 style="font-size: 1.2rem; margin-bottom: 1.5rem;" class="lang-th">นิสิตวิทยาการคอมพิวเตอร์</h2>
+                    <h2 style="font-size: 1.2rem; margin-bottom: 1.5rem;" class="lang-en">Computer Science Student</h2>
+                    <p class="hero-description lang-th">นักศึกษาฝึกงานด้านไอทีที่มีประสบการณ์จริงในการพัฒนาและเชื่อมต่อระบบ รวมถึง REST APIs, LINE Messaging API และระบบ Automation พร้อมเริ่มงานได้ทันทีหลังจบการศึกษา</p>
+                    <p class="hero-description lang-en">IT Intern with hands-on experience in developing real-world systems, REST APIs, and LINE Messaging API. Ready to start working immediately.</p>
+                    <div class="hero-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">KU82</span>
+                            <span class="stat-label">KASETSART UNIV.</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">GPA 2.51</span>
+                            <span class="stat-label lang-th">เกรดเฉลี่ย</span>
+                            <span class="stat-label lang-en">GPA</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-image-container" data-aos="fade-left">
                     <div class="frame-outer">
                         <div class="frame-inner"><img src="assets/img/profile.png" alt="Profile" class="profile-img"></div>
+                        <div class="ready-badge"><span class="lang-th">พร้อมร่วมงาน</span><span class="lang-en">READY TO WORK</span></div>
                     </div>
                 </div>
             </div>
         </header>
 
         <main class="container">
-            <!-- Portfolio Section (ครบ 6 รายการ) -->
+            <section id="about" class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-address-card"></i> <span class="lang-th">ข้อมูลส่วนตัว</span><span class="lang-en">Profile</span></h2>
+                <div class="contact-grid-header">
+                    <div class="contact-item"><div class="icon-box"><i class="fa-solid fa-envelope"></i></div><a href="mailto:thaweesak.mos56@gmail.com">thaweesak.mos56@gmail.com</a></div>
+                    <div class="contact-item"><div class="icon-box"><i class="fa-solid fa-phone"></i></div><a href="tel:0957708032">095-770-8032</a></div>
+                    <div class="contact-item"><div class="icon-box"><i class="fa-brands fa-github"></i></div><a href="https://github.com/thaweesakmos56-netizen" target="_blank">github.com/thaweesakmos56-netizen</a></div>
+                </div>
+            </section>
+
+            <section id="skills" class="resume-section">
+                <h2 class="section-title"><i class="fa-solid fa-code"></i> <span class="lang-th">ทักษะด้านเทคนิค</span><span class="lang-en">Technical Skills</span></h2>
+                <div class="grid">
+                    <div class="info-card" data-aos="fade-up">
+                        <h3>Frontend</h3>
+                        <ul class="skill-list">
+                            <li><i class="devicon-javascript-plain colored"></i> JS (React / Angular)</li>
+                            <li><i class="fa-solid fa-mobile-screen"></i> Responsive Web Design</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Backend</h3>
+                        <ul class="skill-list">
+                            <li><i class="devicon-python-plain colored"></i> Python (Flask) / Node.js</li>
+                            <li><i class="fa-brands fa-line"></i> LINE API Integration</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Automation</h3>
+                        <ul class="skill-list">
+                            <li><i class="fa-solid fa-diagram-next"></i> n8n Workflow Automation</li>
+                            <li><i class="devicon-docker-plain colored"></i> Docker / Git / PM2</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> <span class="lang-th">ประสบการณ์ทำงาน</span><span class="lang-en">Experience</span></h2>
+                <div class="info-card">
+                    <div class="card-header">
+                        <div><h3 class="highlight">Programmer (IT Intern)</h3><p style="font-size: 0.85rem; color: #ccc;">S. Nakhon Cement Thai Co., Ltd.</p></div>
+                        <span class="date-badge">Nov 2025 – Mar 2026</span>
+                    </div>
+                    <ul class="skill-list lang-th">
+                        <li>• พัฒนาและทดสอบ REST API ด้วย Flask</li>
+                        <li>• เชื่อมต่อ LINE Messaging API และออกแบบ Flex Message</li>
+                        <li>• ออกแบบ Workflow Automation ด้วย n8n</li>
+                    </ul>
+                    <ul class="skill-list lang-en">
+                        <li>• Developed REST APIs using Flask.</li>
+                        <li>• Integrated LINE Messaging API.</li>
+                        <li>• Designed automation using n8n.</li>
+                    </ul>
+                </div>
+            </section>
+
             <section id="portfolio" class="resume-section" data-aos="fade-up">
                 <h2 class="section-title"><i class="fa-brands fa-github"></i> <span class="lang-th">ผลงาน</span><span class="lang-en">Portfolio</span></h2>
                 <div class="grid">
                     <div class="info-card project-card" onclick="openProject('thaweesak-bot')">
+                        <div class="repo-header"><i class="fa-solid fa-robot repo-icon"></i><span class="date-badge">Public</span></div>
                         <p style="font-weight: 700;">Thaweesak (Scorpion Bot)</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('line-supplier')">
+                        <div class="repo-header"><i class="fa-solid fa-file-invoice-dollar repo-icon"></i><span class="date-badge">Public</span></div>
                         <p style="font-weight: 700;">LINE-Supplier-Quotation</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('smart-task')">
+                        <div class="repo-header"><i class="fa-solid fa-list-check repo-icon"></i><span class="date-badge">Public</span></div>
                         <p style="font-weight: 700;">Smart-Task-Manager</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('sales-dash')">
+                        <div class="repo-header"><i class="fa-solid fa-chart-line repo-icon"></i><span class="date-badge">Public</span></div>
                         <p style="font-weight: 700;">Sales Dashboard</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('shooting-game')">
+                        <div class="repo-header"><i class="fa-solid fa-gamepad repo-icon"></i><span class="date-badge">Public</span></div>
                         <p style="font-weight: 700;">Shooting Game (Arcade)</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('realtime-chat')">
+                        <div class="repo-header"><i class="fa-solid fa-comments repo-icon"></i><span class="date-badge">Public</span></div>
                         <p style="font-weight: 700;">Real-Time-Chat-App</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
                     </div>
                 </div>
             </section>
         </main>
-
-        <footer><p>© 2026 THAWEESAK SEEAANGRAT</p></footer>
+        <footer><p>© 2026 THAWEESAK SEEAANGRAT | Sakon Nakhon, Thailand</p></footer>
     </div>
 
     <!-- Modal -->
@@ -232,18 +310,19 @@
     <script>
         AOS.init({ duration: 1000, once: false });
 
-        document.getElementById('langToggle').addEventListener('click', () => {
+        const langBtn = document.getElementById('langToggle');
+        langBtn.addEventListener('click', () => {
             document.body.classList.toggle('lang-th-active');
             document.body.classList.toggle('lang-en-active');
         });
 
         const projectData = {
-            'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ข้อมูลเกี่ยวกับแมงป่องช้าง', en: 'LINE Chatbot for Asian Forest Scorpion info.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
+            'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ข้อมูลแมงป่องช้าง พัฒนาด้วย Node.js', en: 'LINE Chatbot for Scorpion info using Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
             'line-supplier': { title: 'LINE Supplier Quotation', th: 'ระบบขอใบเสนอราคาผ่าน LINE พร้อมหลังบ้าน PHP', en: 'Quotation system via LINE API with PHP backend.', link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System' },
-            'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานในทีม ติดตามสถานะความคืบหน้า พัฒนาด้วย PHP', en: 'Task management app built with PHP to track team progress.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
-            'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขายด้วย PHP', en: 'Sales dashboard built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
+            'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานและติดตามสถานะ พัฒนาด้วย PHP', en: 'Task Management app built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
+            'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขายและกราฟสถิติด้วย PHP', en: 'Sales analysis dashboard built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
             'shooting-game': { title: 'Shooting Game (Arcade)', th: 'เกมยิงแนวอาเขต พัฒนาด้วย Vanilla JS', en: 'Arcade shooting game built with Vanilla JavaScript.', link: 'https://github.com/thaweesakmos56-netizen/shooting-game' },
-            'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทแบบเรียลไทม์ด้วย Node.js', en: 'Instant messaging application built with Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
+            'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทเรียลไทม์ พัฒนาด้วย Node.js', en: 'Instant messaging app built with Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
         };
 
         window.openProject = function(id) {
@@ -252,63 +331,70 @@
             document.getElementById('modalBody').innerHTML = `
                 <h2 style="color:var(--accent-gold); margin-bottom:1rem;">${project.title}</h2>
                 <p style="color:#fff;">${isThai ? project.th : project.en}</p>
-                <a href="${project.link}" target="_blank" class="visit-btn">Visit Project</a>
+                <a href="${project.link}" target="_blank" class="visit-btn">Visit GitHub</a>
             `;
             document.getElementById('projectModal').style.display = 'flex';
         };
         window.closeProject = () => document.getElementById('projectModal').style.display = 'none';
 
-        // Scroll Logic (Curtain Effect Fix)
-        const l1 = [document.getElementById('leftL1'), document.getElementById('rightL1')];
-        const l2 = [document.getElementById('leftL2'), document.getElementById('rightL2')];
-        const l3 = [document.getElementById('leftL3'), document.getElementById('rightL3')];
+        // Scroll Animation Logic
+        const introOverlay = document.getElementById('introOverlay');
+        const contentWrapper = document.getElementById('mainContentWrapper');
         const galaxyScene = document.getElementById('galaxyScene');
+        const zusLeft = document.getElementById('zusLeft');
+        const zusRight = document.getElementById('zusRight');
+        const hikari = document.getElementById('hikari');
         const jesusScene = document.getElementById('jesusScene');
+        const jesus1 = document.getElementById('jesus1');
+        const jesus2 = document.getElementById('jesus2');
         const introHint = document.getElementById('introHint');
+
+        const zusStart = 600, zusTouch = 3500, hikariStart = 3200, jesusStart = 5000, jesusMiddle = 7500, fadeOutStart = 8500, fadeOutEnd = 10000;
 
         window.addEventListener('scroll', () => {
             const s = window.scrollY;
 
-            // แก้ไข: ตัวคูณการแยกข้าง (Multiplier) สำหรับมือถือให้แรงขึ้นมาก (12-15 เท่า)
-            const exitMultiplier = window.innerWidth < 768 ? 14 : 4.5; 
-            const s1 = s * exitMultiplier;
-            const s2 = s * (exitMultiplier * 0.7);
-            const s3 = s * (exitMultiplier * 0.4);
-
-            l1[0].style.transform = `translateX(-${s1}px)`;
-            l1[1].style.transform = `translateX(${s1}px)`;
-            l2[0].style.transform = `translateX(-${s2}px)`;
-            l2[1].style.transform = `translateX(${s2}px)`;
-            l3[0].style.transform = `translateX(-${s3}px)`;
-            l3[1].style.transform = `translateX(${s3}px)`;
-
-            // Zus / Galaxy / Jesus Logic (เหมือนเดิม)
+            // Galaxy / Zus Scene
             let gAlpha = 0, zProg = 0;
-            if (s > 600 && s < 5000) {
-                gAlpha = Math.min((s - 600) / 1000, 1);
-                zProg = Math.min((s - 600) / (3500 - 600), 1);
-            } else if (s >= 5000) { gAlpha = 1 - (s - 5000) / 500; }
+            if (s > zusStart && s < jesusStart) {
+                gAlpha = Math.min((s - zusStart) / 1000, 1);
+                zProg = Math.min((s - zusStart) / (zusTouch - zusStart), 1);
+            } else if (s >= jesusStart) { 
+                gAlpha = 1 - (s - jesusStart) / 500; 
+            }
             galaxyScene.style.opacity = gAlpha;
-            document.getElementById('zusLeft').style.left = (-55 + zProg * 85) + '%';
-            document.getElementById('zusRight').style.right = (-55 + zProg * 85) + '%';
+            zusLeft.style.left = (-50 + zProg * 75) + '%';
+            zusRight.style.right = (-50 + zProg * 75) + '%';
 
-            let jAlpha = 0;
-            if (s > 5000) {
-                jAlpha = Math.min((s - 5000) / 500, 1);
-                if (s > 8500) jAlpha = 1 - (s - 8500) / (10000 - 8500);
+            // Hikari
+            let hAlpha = (s > hikariStart && s < jesusStart) ? Math.min((s - hikariStart) / 500, 1) : (s >= jesusStart ? 1 - (s-jesusStart)/500 : 0);
+            hikari.style.opacity = hAlpha;
+            hikari.style.transform = `translate(-50%, -50%) rotate(${s * 0.15}deg)`;
+
+            // Jesus Scene
+            let jAlpha = 0, jProg = 0;
+            if (s > jesusStart) {
+                jAlpha = Math.min((s - jesusStart) / 500, 1);
+                jProg = Math.min((s - jesusStart) / (jesusMiddle - jesusStart), 1);
+                if (s > fadeOutStart) jAlpha = 1 - (s - fadeOutStart) / (fadeOutEnd - fadeOutStart);
             }
             jesusScene.style.opacity = jAlpha;
+            if(jesus1) jesus1.style.top = (-100 + jProg * 150) + '%';
+            if(jesus2) jesus2.style.top = (200 - jProg * 150) + '%';
 
-            if (s < 10000) {
-                let p = Math.max(0, (s - 8500) / (10000 - 8500));
-                document.getElementById('introOverlay').style.opacity = 1 - p;
-                document.getElementById('mainContentWrapper').style.opacity = p;
-                document.getElementById('introOverlay').style.display = p > 0.9 ? 'none' : 'block';
+            // Final Transition to Main Content
+            if (s < fadeOutEnd) {
+                let p = Math.max(0, (s - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+                introOverlay.style.opacity = 1 - p;
+                contentWrapper.style.opacity = p;
+                introOverlay.style.display = p > 0.9 ? 'none' : 'block';
             } else { 
-                document.getElementById('introOverlay').style.display = 'none'; 
-                document.getElementById('mainContentWrapper').style.opacity = 1; 
+                introOverlay.style.display = 'none'; 
+                contentWrapper.style.opacity = 1; 
             }
-            introHint.style.opacity = s > 50 ? '0' : '1';
+
+            // Hide hint after starting scroll
+            introHint.style.opacity = s > 100 ? '0' : '1';
         });
     </script>
 </body>
