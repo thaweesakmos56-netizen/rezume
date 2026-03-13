@@ -478,7 +478,10 @@ if (jesusScene) {
         jesus2.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.1}deg)`;
     }
 }
+            if (introHint) introHint.style.opacity = scrollValue > 50 ? '0' : '1';
+        });
     </script>
 </body>
 </html>
+
 
