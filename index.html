@@ -447,8 +447,8 @@
                 gAlpha = 1 - ((scrollValue - jesusStart) / 500);
             }
             if (galaxyScene) galaxyScene.style.opacity = gAlpha;
-            if (zusLeft) zusLeft.style.left = (-50 + zProg * 75) + '%';
-            if (zusRight) zusRight.style.right = (-50 + zProg * 75) + '%';
+            if (zusLeft) zusLeft.style.left = (-50 + zProg * 60) + '%';
+            if (zusRight) zusRight.style.right = (-50 + zProg * 60) + '%';
 
             // Hikari
             let hAlpha = (scrollValue > hikariStart && scrollValue < jesusStart) ? Math.min((scrollValue - hikariStart) / 500, 1) : (scrollValue >= jesusStart ? 1 - (scrollValue-jesusStart)/500 : 0);
@@ -457,20 +457,28 @@
                 hikari.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.15}deg)`;
             }
 
-            // Jesus
-            let jAlpha = 0, jProg = 0;
-            if (scrollValue > jesusStart) {
-                jAlpha = Math.min((scrollValue - jesusStart) / 500, 1);
-                jProg = Math.min((scrollValue - jesusStart) / (jesusMiddle - jesusStart), 1);
-                if (scrollValue > fadeOutStart) jAlpha = 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
-            }
-            if (jesusScene) {
-                jesusScene.style.opacity = jAlpha;
-                if (jesus1) jesus1.style.top = (-100 + jProg * 150) + '%';
-                if (jesus2) jesus2.style.top = (200 - jProg * 150) + '%';
-            }
-            if (introHint) introHint.style.opacity = scrollValue > 50 ? '0' : '1';
-        });
+           // Jesus
+let jAlpha = 0, jProg = 0;
+if (scrollValue > jesusStart) {
+    jAlpha = Math.min((scrollValue - jesusStart) / 500, 1);
+    jProg = Math.min((scrollValue - jesusStart) / (jesusMiddle - jesusStart), 1);
+    if (scrollValue > fadeOutStart) jAlpha = 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+}
+
+if (jesusScene) {
+    jesusScene.style.opacity = jAlpha;
+    if (jesus1) {
+        jesus1.style.top = (-100 + jProg * 250) + '%';
+        // ถ้าต้องการให้ jesus1 หมุนด้วย (เลือกใส่หรือไม่ใส่ก็ได้)
+        // jesus1.style.transform = `translate(-50%, -50%) rotate(${-scrollValue * 0.05}deg)`;
+    }
+    if (jesus2) {
+        jesus2.style.top = (200 - jProg * 150) + '%';
+        // เพิ่มบรรทัดนี้เพื่อให้ jesus2 หมุนครับ (0.1 คือความเร็วในการหมุน ปรับเปลี่ยนได้)
+        jesus2.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.1}deg)`;
+    }
+}
     </script>
 </body>
 </html>
+
