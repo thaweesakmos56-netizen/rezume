@@ -33,7 +33,6 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* แก้ไข: ปลดล็อก Height เพื่อให้เลื่อนได้ */
         html {
             width: 100%;
             overflow-x: hidden;
@@ -42,22 +41,21 @@
         
         body { 
             width: 100%;
-            min-height: 100vh; /* เปลี่ยนจาก height: 100% เป็น min-height */
+            min-height: 100vh;
             background-color: var(--bg-main); 
             font-family: 'Sarabun', 'Poppins', sans-serif; 
             color: var(--text-primary); 
             line-height: 1.6; 
             overflow-x: hidden;
             -webkit-text-size-adjust: 100%;
-            touch-action: pan-y; /* อนุญาตให้เลื่อนขึ้นลงได้ */
+            touch-action: pan-y;
         }
 
-        /* Language Toggle */
         .lang-th-active .lang-en { display: none !important; }
         .lang-en-active .lang-th { display: none !important; }
 
         /* =========================================
-           2. INTRO OVERLAY (แก้ไข: เพิ่ม pointer-events: none)
+           2. INTRO OVERLAY (เงื่อนไขโค้ดที่ 2: จอดำ ไม่มีใบไม้)
            ========================================= */
         .intro-overlay { 
             position: fixed; 
@@ -68,10 +66,9 @@
             z-index: 9999; 
             background: #000; 
             overflow: hidden;
-            pointer-events: none; /* สำคัญ: เพื่อให้ส่งแรงเลื่อนไปยัง body ด้านล่างได้ */
+            pointer-events: none; 
         }
 
-        /* Scene: Galaxy & Zus */
         .galaxy-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; display: flex; justify-content: center; align-items: center; }
         .galaxy-bg { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(2,6,23,0) 0%, #000 85%), url('assets/img/galaczy.png') center/cover no-repeat; }
         
@@ -80,11 +77,10 @@
         .zus-right { right: -50%; top: 53%; }
         .hikari-img { position: absolute; top: 45%; left: 50%; width: 90%; max-width: 450px; z-index: 3; opacity: 0; filter: drop-shadow(0 0 30px var(--accent-gold)); }
 
-        /* Scene: Jesus */
         .jesus-scene { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; opacity: 0; }
         .jesus-bg { position: absolute; width: 100%; height: 100%; background: url('assets/img/back.png') center/cover no-repeat; }
         .jesus-img { position: absolute; left: 50%; transform: translate(-50%, -50%); z-index: 21; }
-        .jesus-img.j1 { width: 80%; max-width: 350px; } 
+        .jesus-img.j1 { width: 80%; max-width: 450px; } 
         .jesus-img.j2 { width: 100%; max-width: 650px; }
 
         .intro-hint { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 100; color: #fff; }
@@ -97,7 +93,7 @@
         #mainContentWrapper { 
             position: relative; 
             opacity: 0; 
-            padding-top: 10000px; /* ระยะสำหรับทำ Scroll Parallax */
+            padding-top: 10000px; 
             background-color: var(--bg-main); 
             width: 100%; 
         }
@@ -173,7 +169,7 @@
 
 <body class="lang-th-active">
 
-    <!-- 1. Intro Overlay (เปิดมาจอดำ ไม่มีใบไม้) -->
+    <!-- 1. Intro Overlay (เงื่อนไขโค้ดที่ 2: จอดำสนิท) -->
     <div class="intro-overlay" id="introOverlay">
         
         <div class="galaxy-scene" id="galaxyScene">
@@ -251,7 +247,7 @@
         </header>
 
         <main class="container">
-            <!-- Profile Info -->
+            <!-- เนื้อหาจากโค้ดที่ 1: Profile -->
             <section id="about" class="resume-section" data-aos="fade-up">
                 <h2 class="section-title"><i class="fa-solid fa-address-card"></i> <span class="lang-th">ข้อมูลส่วนตัว</span><span class="lang-en">Profile</span></h2>
                 <div class="contact-grid-header">
@@ -267,10 +263,15 @@
                         <div class="icon-box"><i class="fa-brands fa-github"></i></div>
                         <a href="https://github.com/thaweesakmos56-netizen" target="_blank">github.com/thaweesakmos56-netizen</a>
                     </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                        <span class="lang-th">สกลนคร, ประเทศไทย</span>
+                        <span class="lang-en">Sakon Nakhon, Thailand</span>
+                    </div>
                 </div>
             </section>
 
-            <!-- Technical Skills -->
+            <!-- เนื้อหาจากโค้ดที่ 1: Technical Skills -->
             <section id="skills" class="resume-section">
                 <h2 class="section-title"><i class="fa-solid fa-code"></i> <span class="lang-th">ทักษะด้านเทคนิค</span><span class="lang-en">Technical Skills</span></h2>
                 <div class="grid">
@@ -280,6 +281,7 @@
                             <li><i class="devicon-javascript-plain colored"></i> JS (React / Angular)</li>
                             <li><i class="fa-solid fa-mobile-screen"></i> Responsive Web Design</li>
                             <li><i class="fa-solid fa-link"></i> REST API Integration</li>
+                            <li><i class="fa-solid fa-paintbrush"></i> HTML5 / CSS3 / Bootstrap</li>
                         </ul>
                     </div>
                     <div class="info-card" data-aos="fade-up" data-aos-delay="100">
@@ -287,6 +289,7 @@
                         <ul class="skill-list">
                             <li><i class="devicon-python-plain colored"></i> Python (Flask) / Node.js</li>
                             <li><i class="devicon-php-plain colored"></i> PHP / Java / TypeScript</li>
+                            <li><i class="fa-solid fa-database"></i> MySQL / SQL</li>
                             <li><i class="fa-brands fa-line"></i> LINE Messaging API</li>
                         </ul>
                     </div>
@@ -295,69 +298,105 @@
                         <ul class="skill-list">
                             <li><i class="fa-solid fa-diagram-next"></i> n8n Workflow Automation</li>
                             <li><i class="devicon-docker-plain colored"></i> Docker / Git / PM2</li>
+                            <li><i class="fa-solid fa-terminal"></i> Linux Command Line</li>
+                            <li><i class="devicon-wordpress-plain colored"></i> WordPress</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Work Experience -->
+            <!-- เนื้อหาจากโค้ดที่ 1: Experience -->
             <section id="experience" class="resume-section" data-aos="fade-up">
                 <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> <span class="lang-th">ประสบการณ์ทำงาน</span><span class="lang-en">Experience</span></h2>
                 <div class="info-card">
                     <div class="card-header">
                         <div>
                             <h3 class="highlight">Programmer (IT Intern)</h3>
-                            <p style="font-size: 0.9rem; color: #ccc;">S. Nakhon Cement Thai Co., Ltd.</p>
+                            <p style="font-size: 0.9rem; color: #ccc;">S. Nakhon Cement Thai Co., Ltd. (บริษัท สินค้าซีเมนต์ไทย จำกัด)</p>
                         </div>
                         <span class="date-badge">Nov 2025 – Mar 2026</span>
                     </div>
                     <ul class="skill-list lang-th">
                         <li>• พัฒนาและทดสอบ REST API ด้วย Python Flask</li>
                         <li>• เชื่อมต่อ LINE Messaging API และออกแบบ Flex Message</li>
-                        <li>• สร้าง Workflow Automation ด้วย n8n</li>
+                        <li>• สร้าง Workflow Automation ด้วย n8n เพื่อลดขั้นตอนการทำงาน</li>
+                        <li>• บริหารจัดการระบบบน Server จริงด้วย PM2 และ Docker</li>
+                        <li>• เรียนรู้การทำ Frontend ด้วย Angular และ JavaScript</li>
                     </ul>
                     <ul class="skill-list lang-en">
                         <li>• Developed and tested REST APIs using Python Flask.</li>
                         <li>• Integrated LINE Messaging API and designed Flex Messages.</li>
-                        <li>• Created workflow automation using n8n.</li>
+                        <li>• Created workflow automation using n8n to optimize processes.</li>
+                        <li>• Managed production systems using PM2 and Docker.</li>
+                        <li>• Gained experience in Frontend development with Angular.</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Portfolio Section (ครบ 6 ชิ้น) -->
+            <!-- เนื้อหาจากโค้ดที่ 1: Soft Skills -->
+            <section class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-lightbulb"></i> <span class="lang-th">ทักษะเสริม</span><span class="lang-en">Soft Skills</span></h2>
+                <div class="grid">
+                    <div class="info-card">
+                        <ul class="skill-list">
+                            <li><i class="fa-solid fa-users"></i> <span class="lang-th">ทำงานเป็นทีมและการสื่อสาร</span><span class="lang-en">Teamwork & Communication</span></li>
+                            <li><i class="fa-solid fa-brain"></i> <span class="lang-th">การคิดวิเคราะห์และแก้ปัญหา</span><span class="lang-en">Critical Thinking</span></li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <ul class="skill-list">
+                            <li><i class="fa-solid fa-bolt"></i> <span class="lang-th">เรียนรู้ไวและปรับตัวเก่ง</span><span class="lang-en">Fast Learner</span></li>
+                            <li><i class="fa-solid fa-check-double"></i> <span class="lang-th">ความรับผิดชอบต่องาน</span><span class="lang-en">Responsibility</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio (6 รายการ) -->
             <section id="portfolio" class="resume-section" data-aos="fade-up">
                 <h2 class="section-title"><i class="fa-brands fa-github"></i> <span class="lang-th">ผลงานและโปรเจกต์</span><span class="lang-en">Portfolio</span></h2>
                 <div class="grid">
                     <div class="info-card project-card" onclick="openProject('thaweesak-bot')">
-                        <div class="repo-header"><i class="fa-solid fa-robot repo-icon"></i></div>
+                        <div class="repo-header"><i class="fa-solid fa-robot repo-icon"></i><span class="repo-badge">Public</span></div>
                         <p style="font-weight: 700;">Thaweesak (Scorpion Bot)</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('line-supplier')">
-                        <div class="repo-header"><i class="fa-solid fa-file-invoice-dollar repo-icon"></i></div>
+                        <div class="repo-header"><i class="fa-solid fa-file-invoice-dollar repo-icon"></i><span class="repo-badge">Public</span></div>
                         <p style="font-weight: 700;">LINE-Supplier-Quotation</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('smart-task')">
-                        <div class="repo-header"><i class="fa-solid fa-list-check repo-icon"></i></div>
+                        <div class="repo-header"><i class="fa-solid fa-list-check repo-icon"></i><span class="repo-badge">Public</span></div>
                         <p style="font-weight: 700;">Smart-Task-Manager</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('sales-dash')">
-                        <div class="repo-header"><i class="fa-solid fa-chart-line repo-icon"></i></div>
+                        <div class="repo-header"><i class="fa-solid fa-chart-line repo-icon"></i><span class="repo-badge">Public</span></div>
                         <p style="font-weight: 700;">Sales Dashboard</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot php"></span> PHP</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('shooting-game')">
-                        <div class="repo-header"><i class="fa-solid fa-gamepad repo-icon"></i></div>
+                        <div class="repo-header"><i class="fa-solid fa-gamepad repo-icon"></i><span class="repo-badge">Public</span></div>
                         <p style="font-weight: 700;">Shooting Game (Arcade)</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
                     </div>
                     <div class="info-card project-card" onclick="openProject('realtime-chat')">
-                        <div class="repo-header"><i class="fa-solid fa-comments repo-icon"></i></div>
+                        <div class="repo-header"><i class="fa-solid fa-comments repo-icon"></i><span class="repo-badge">Public</span></div>
                         <p style="font-weight: 700;">Real-Time-Chat-App</p>
                         <div style="margin-top: 10px; font-size: 0.8rem;"><span class="lang-dot js"></span> JavaScript</div>
                     </div>
+                </div>
+            </section>
+
+            <!-- เนื้อหาจากโค้ดที่ 1: Education -->
+            <section class="resume-section" data-aos="fade-up">
+                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> <span class="lang-th">ประวัติการศึกษา</span><span class="lang-en">Education</span></h2>
+                <div class="info-card">
+                    <p class="highlight" style="margin-bottom: 0.5rem;">2565 - 2569 (2022 - 2026)</p>
+                    <p class="lang-th" style="font-weight: 700; font-size: 1.1rem;">มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+                    <p class="lang-en" style="font-weight: 700; font-size: 1.1rem;">Kasetsart University, Chalermphrakiat Sakon Nakhon Province Campus</p>
+                    <p style="font-size: 0.95rem; color: var(--accent-gold);">คณะวิทยาศาสตร์และวิศวกรรมศาสตร์ | สาขาวิทยาการคอมพิวเตอร์</p>
                 </div>
             </section>
         </main>
@@ -377,23 +416,20 @@
 
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // 1. เริ่มต้นระบบ AOS (แอนิเมชันตอนเลื่อนดูเนื้อหา)
     AOS.init({ duration: 1000, once: false });
 
-    // 2. ระบบสลับภาษา
     document.getElementById('langToggle').addEventListener('click', () => {
         document.body.classList.toggle('lang-th-active');
         document.body.classList.toggle('lang-en-active');
     });
 
-    // 3. ข้อมูลโปรเจกต์ (สำหรับ Modal)
     const projectData = {
-        'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ข้อมูลแมงป่องช้าง พัฒนาด้วย Node.js', en: 'LINE Chatbot for Scorpion info using Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
-        'line-supplier': { title: 'LINE Supplier Quotation', th: 'ระบบขอใบเสนอราคาผ่าน LINE พร้อมหลังบ้าน PHP', en: 'Quotation system via LINE API with PHP backend.', link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System' },
-        'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานและติดตามสถานะ พัฒนาด้วย PHP', en: 'Task Management app built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
-        'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขายและกราฟสถิติด้วย PHP', en: 'Sales analysis dashboard built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
-        'shooting-game': { title: 'Shooting Game (Arcade)', th: 'เกมยิงแนวอาเขต พัฒนาด้วย Vanilla JS', en: 'Arcade shooting game built with Vanilla JavaScript.', link: 'https://github.com/thaweesakmos56-netizen/shooting-game' },
-        'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทเรียลไทม์ พัฒนาด้วย Node.js', en: 'Instant messaging app built with Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
+        'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ข้อมูลเกี่ยวกับแมงป่องช้าง พัฒนาด้วย LINE Messaging API และ Node.js เพื่อให้ความรู้ด้านชีววิทยาและการเลี้ยงดู', en: 'LINE Chatbot for Asian Forest Scorpion info using LINE Messaging API and Node.js for education and care guides.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
+        'line-supplier': { title: 'LINE Supplier Quotation', th: 'ระบบขอใบเสนอราคาผ่าน LINE ช่วยให้ Supplier ส่งราคาได้ทันที พร้อมระบบจัดการหลังบ้านด้วย PHP', en: 'Quotation system via LINE API, allowing suppliers to submit quotes instantly with a PHP backend.', link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System' },
+        'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานในทีม ติดตามสถานะความคืบหน้า พัฒนาด้วย PHP เพื่อความง่ายในการจัดระเบียบงาน', en: 'Task management app built with PHP to track team progress and organize workflows efficiently.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
+        'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขาย ดึงข้อมูลจากฐานข้อมูลมาแสดงผลเป็นกราฟและสถิติด้วย PHP', en: 'Sales analysis system that retrieves data from the database and visualizes it using PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
+        'shooting-game': { title: 'Shooting Game (Arcade)', th: 'เกมยิงแนวอาเขต พัฒนาด้วย Vanilla JavaScript เน้นระบบพิกัดและการตรวจจับการชน (Collision)', en: 'Arcade shooting game built with Vanilla JavaScript, focusing on coordinate systems and collision detection.', link: 'https://github.com/thaweesakmos56-netizen/shooting-game' },
+        'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทแบบเรียลไทม์ พัฒนาด้วย Node.js รองรับการรับส่งข้อความทันทีแบบไม่มีดีเลย์', en: 'Instant messaging application built with Node.js supporting real-time interaction without delay.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
     };
 
     window.openProject = function(id) {
@@ -401,7 +437,7 @@
         const isThai = document.body.classList.contains('lang-th-active');
         document.getElementById('modalBody').innerHTML = `
             <h2 style="color:var(--accent-gold); margin-bottom:1rem;">${project.title}</h2>
-            <p style="color:#fff;">${isThai ? project.th : project.en}</p>
+            <p style="color:#fff; line-height:1.7;">${isThai ? project.th : project.en}</p>
             <a href="${project.link}" target="_blank" class="visit-btn">Visit GitHub</a>
         `;
         document.getElementById('projectModal').style.display = 'flex';
@@ -409,7 +445,7 @@
     window.closeProject = () => document.getElementById('projectModal').style.display = 'none';
 
     // ==========================================
-    // 4. ระบบแอนิเมชันตอนเลื่อน (SCROLL LOGIC) - ปรับปรุงใหม่
+    // 4. SCROLL LOGIC (เงื่อนไขโค้ดที่ 2: พระเจ้าหยุดที่กึ่งกลาง)
     // ==========================================
     const introOverlay = document.getElementById('introOverlay');
     const contentWrapper = document.getElementById('mainContentWrapper');
@@ -422,14 +458,13 @@
     const jesus2 = document.getElementById('jesus2');
     const introHint = document.getElementById('introHint');
 
-    // ตั้งค่าจุดเวลา (Timeline)
     const zusStart = 600, zusTouch = 3500, hikariStart = 3200;
     const jesusStart = 5000, jesusMiddle = 7500, fadeOutStart = 8500, fadeOutEnd = 10000;
 
     window.addEventListener('scroll', function() {
         const scrollValue = window.scrollY;
 
-        // --- 4.1 จัดการการ Fade ของพื้นหลังสีดำ ---
+        // Fade Black Background
         if (scrollValue < fadeOutEnd) {
             let progress = Math.max(0, (scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
             introOverlay.style.opacity = 1 - progress;
@@ -441,7 +476,7 @@
             contentWrapper.style.opacity = 1;
         }
 
-        // --- 4.2 คำนวณ Galaxy & Zus (แมงป่อง) ---
+        // Galaxy & Zus
         let galaxyAlpha = 0, zusProg = 0;
         if (scrollValue > zusStart && scrollValue < jesusStart) {
             galaxyAlpha = Math.min((scrollValue - zusStart) / 1000, 1);
@@ -450,54 +485,42 @@
             galaxyAlpha = Math.max(0, 1 - ((scrollValue - jesusStart) / 500));
         }
 
-        // --- 4.3 คำนวณ Hikari (วงแหวน) ---
+        // Hikari
         let hikariAlpha = (scrollValue > hikariStart && scrollValue < jesusStart) 
             ? Math.min((scrollValue - hikariStart) / 500, 1) 
             : (scrollValue >= jesusStart ? Math.max(0, 1 - (scrollValue - jesusStart) / 500) : 0);
 
-        // --- 4.4 คำนวณ Jesus (ตามโค้ดที่คุณต้องการ) ---
-// --- 4.4 คำนวณ Jesus (ปรับปรุงให้หยุดที่กึ่งกลางเหมือนรูปตัวอย่าง) ---
+        // Jesus Animation (Stopping in Middle)
         let jesusAlpha = 0, jesusProg = 0;
         if (scrollValue > jesusStart) {
-            // ค่อยๆ ปรากฏขึ้น
             jesusAlpha = Math.min((scrollValue - jesusStart) / 500, 1);
-            
-            // jesusProg จะวิ่งจาก 0 ไป 1 ในช่วง jesusStart ถึง jesusMiddle
             jesusProg = Math.min((scrollValue - jesusStart) / (jesusMiddle - jesusStart), 1);
-            
-            // เมื่อเลื่อนถึงจุดจบ (fadeOutStart) ให้ค่อยๆ จางหายไปเข้าสู่เนื้อหา Resume
             if (scrollValue > fadeOutStart) {
                 jesusAlpha = Math.max(0, 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart)));
             }
         }
         
-        // --- ปรับตำแหน่งให้หยุดที่กึ่งกลาง (50%) ---
-        // จากเดิม -100 + (jesusProg * 250) เปลี่ยนเป็นเริ่มจากบนสุดแล้วมาหยุดที่ 50% พอดี
-        const j1Pos = -20 + (jesusProg * 70); // เริ่มที่ -20% แล้วมาหยุดที่ 50% (กึ่งกลาง)
-        const j1Scale = 0.5 + (jesusProg * 0.8); // ขยายจาก 0.5 ไปจนถึง 1.3 (ให้ขนาดใหญ่เหมือนรูป)
-        const j1Rotate = -10 + (jesusProg * 10); // เพิ่มลูกเล่นเอียงตัวเล็กน้อยตอนเริ่มแล้วค่อยๆ ตรง
+        // --- ตำแหน่งหยุดที่กึ่งกลาง (50%) เหมือนเงื่อนไขโค้ด 2 ---
+        const j1Pos = -20 + (jesusProg * 70); 
+        const j1Scale = 0.5 + (jesusProg * 0.8);
+        const j1Rotate = -10 + (jesusProg * 10);
         
-        const j2Pos = 200 - (jesusProg * 150);  // รูปที่ 2 วิ่งสวนขึ้นไป
-        const j2Rotate = scrollValue * 0.1;      // หมุนตาม Scroll ต่อไป
+        const j2Pos = 200 - (jesusProg * 150); 
+        const j2Rotate = scrollValue * 0.1;
 
-        // --- 4.5 อัปเดต UI ---
         requestAnimationFrame(() => {
-            // อัปเดต Galaxy & Zus
             if (galaxyScene) galaxyScene.style.opacity = galaxyAlpha;
             if (zusLeft) zusLeft.style.left = (-50 + zusProg * 60) + '%';
             if (zusRight) zusRight.style.right = (-50 + zusProg * 60) + '%';
 
-            // อัปเดต Hikari (วงแหวนทอง)
             if (hikari) {
                 hikari.style.opacity = hikariAlpha;
                 hikari.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.15}deg)`;
             }
 
-            // อัปเดต Jesus (รูป Skateboard)
             if (jesusScene) {
                 jesusScene.style.opacity = jesusAlpha;
                 if (jesus1) {
-                    // ปรับให้รูป jesus1 หยุดนิ่งกึ่งกลางหน้าจอ
                     jesus1.style.top = j1Pos + '%';
                     jesus1.style.transform = `translate(-50%, -50%) scale(${j1Scale}) rotate(${j1Rotate}deg)`;
                 }
@@ -506,13 +529,18 @@
                     jesus2.style.transform = `translate(-50%, -50%) rotate(${j2Rotate}deg)`;
                 }
             }
+
+            if (introHint) {
+                if (scrollValue > 50) {
+                    introHint.style.opacity = '0';
+                    introHint.style.visibility = 'hidden';
+                } else {
+                    introHint.style.opacity = '1';
+                    introHint.style.visibility = 'visible';
+                }
+            }
         });
     });
 </script>
 </body>
 </html>
-
-
-
-
-
