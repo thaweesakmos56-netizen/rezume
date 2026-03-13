@@ -456,54 +456,54 @@
             : (scrollValue >= jesusStart ? Math.max(0, 1 - (scrollValue - jesusStart) / 500) : 0);
 
         // --- 4.4 คำนวณ Jesus (ตามโค้ดที่คุณต้องการ) ---
+// --- 4.4 คำนวณ Jesus (ปรับปรุงให้หยุดที่กึ่งกลางเหมือนรูปตัวอย่าง) ---
         let jesusAlpha = 0, jesusProg = 0;
         if (scrollValue > jesusStart) {
+            // ค่อยๆ ปรากฏขึ้น
             jesusAlpha = Math.min((scrollValue - jesusStart) / 500, 1);
+            
+            // jesusProg จะวิ่งจาก 0 ไป 1 ในช่วง jesusStart ถึง jesusMiddle
             jesusProg = Math.min((scrollValue - jesusStart) / (jesusMiddle - jesusStart), 1);
+            
+            // เมื่อเลื่อนถึงจุดจบ (fadeOutStart) ให้ค่อยๆ จางหายไปเข้าสู่เนื้อหา Resume
             if (scrollValue > fadeOutStart) {
                 jesusAlpha = Math.max(0, 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart)));
             }
         }
         
-        const j1Pos = -100 + (jesusProg * 250); // เลื่อนลง
-        const j1Scale = 0.5 + (jesusProg * 1.5);
-        const j2Pos = 200 - (jesusProg * 150);  // เลื่อนขึ้น
-        const j2Rotate = scrollValue * 0.1;      // หมุนตาม Scroll
+        // --- ปรับตำแหน่งให้หยุดที่กึ่งกลาง (50%) ---
+        // จากเดิม -100 + (jesusProg * 250) เปลี่ยนเป็นเริ่มจากบนสุดแล้วมาหยุดที่ 50% พอดี
+        const j1Pos = -20 + (jesusProg * 70); // เริ่มที่ -20% แล้วมาหยุดที่ 50% (กึ่งกลาง)
+        const j1Scale = 0.5 + (jesusProg * 0.8); // ขยายจาก 0.5 ไปจนถึง 1.3 (ให้ขนาดใหญ่เหมือนรูป)
+        const j1Rotate = -10 + (jesusProg * 10); // เพิ่มลูกเล่นเอียงตัวเล็กน้อยตอนเริ่มแล้วค่อยๆ ตรง
+        
+        const j2Pos = 200 - (jesusProg * 150);  // รูปที่ 2 วิ่งสวนขึ้นไป
+        const j2Rotate = scrollValue * 0.1;      // หมุนตาม Scroll ต่อไป
 
-        // --- 4.5 อัปเดต UI ทั้งหมดด้วย requestAnimationFrame เพื่อความลื่นไหล ---
+        // --- 4.5 อัปเดต UI ---
         requestAnimationFrame(() => {
             // อัปเดต Galaxy & Zus
             if (galaxyScene) galaxyScene.style.opacity = galaxyAlpha;
             if (zusLeft) zusLeft.style.left = (-50 + zusProg * 60) + '%';
             if (zusRight) zusRight.style.right = (-50 + zusProg * 60) + '%';
 
-            // อัปเดต Hikari
+            // อัปเดต Hikari (วงแหวนทอง)
             if (hikari) {
                 hikari.style.opacity = hikariAlpha;
                 hikari.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.15}deg)`;
             }
 
-            // อัปเดต Jesus (ส่วนที่คุณแก้ไขล่าสุด)
+            // อัปเดต Jesus (รูป Skateboard)
             if (jesusScene) {
                 jesusScene.style.opacity = jesusAlpha;
                 if (jesus1) {
+                    // ปรับให้รูป jesus1 หยุดนิ่งกึ่งกลางหน้าจอ
                     jesus1.style.top = j1Pos + '%';
-                    jesus1.style.transform = `translate(-50%, -50%) scale(${j1Scale})`;
+                    jesus1.style.transform = `translate(-50%, -50%) scale(${j1Scale}) rotate(${j1Rotate}deg)`;
                 }
                 if (jesus2) {
                     jesus2.style.top = j2Pos + '%';
                     jesus2.style.transform = `translate(-50%, -50%) rotate(${j2Rotate}deg)`;
-                }
-            }
-
-            // จัดการข้อความใบ้ (Scroll to explore)
-            if (introHint) {
-                if (scrollValue > 50) {
-                    introHint.style.opacity = '0';
-                    introHint.style.visibility = 'hidden';
-                } else {
-                    introHint.style.opacity = '1';
-                    introHint.style.visibility = 'visible';
                 }
             }
         });
@@ -511,6 +511,7 @@
 </script>
 </body>
 </html>
+
 
 
 
