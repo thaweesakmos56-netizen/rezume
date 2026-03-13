@@ -375,167 +375,143 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: false });
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 1. เริ่มต้นระบบ AOS (แอนิเมชันตอนเลื่อนดูเนื้อหา)
+    AOS.init({ duration: 1000, once: false });
 
-        document.getElementById('langToggle').addEventListener('click', () => {
-            document.body.classList.toggle('lang-th-active');
-            document.body.classList.toggle('lang-en-active');
-        });
+    // 2. ระบบสลับภาษา
+    document.getElementById('langToggle').addEventListener('click', () => {
+        document.body.classList.toggle('lang-th-active');
+        document.body.classList.toggle('lang-en-active');
+    });
 
-        const projectData = {
-            'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ข้อมูลแมงป่องช้าง พัฒนาด้วย Node.js', en: 'LINE Chatbot for Scorpion info using Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
-            'line-supplier': { title: 'LINE Supplier Quotation', th: 'ระบบขอใบเสนอราคาผ่าน LINE พร้อมหลังบ้าน PHP', en: 'Quotation system via LINE API with PHP backend.', link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System' },
-            'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานและติดตามสถานะ พัฒนาด้วย PHP', en: 'Task Management app built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
-            'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขายและกราฟสถิติด้วย PHP', en: 'Sales analysis dashboard built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
-            'shooting-game': { title: 'Shooting Game (Arcade)', th: 'เกมยิงแนวอาเขต พัฒนาด้วย Vanilla JS', en: 'Arcade shooting game built with Vanilla JavaScript.', link: 'https://github.com/thaweesakmos56-netizen/shooting-game' },
-            'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทเรียลไทม์ พัฒนาด้วย Node.js', en: 'Instant messaging app built with Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
-        };
+    // 3. ข้อมูลโปรเจกต์ (สำหรับ Modal)
+    const projectData = {
+        'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ข้อมูลแมงป่องช้าง พัฒนาด้วย Node.js', en: 'LINE Chatbot for Scorpion info using Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
+        'line-supplier': { title: 'LINE Supplier Quotation', th: 'ระบบขอใบเสนอราคาผ่าน LINE พร้อมหลังบ้าน PHP', en: 'Quotation system via LINE API with PHP backend.', link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System' },
+        'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานและติดตามสถานะ พัฒนาด้วย PHP', en: 'Task Management app built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
+        'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขายและกราฟสถิติด้วย PHP', en: 'Sales analysis dashboard built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
+        'shooting-game': { title: 'Shooting Game (Arcade)', th: 'เกมยิงแนวอาเขต พัฒนาด้วย Vanilla JS', en: 'Arcade shooting game built with Vanilla JavaScript.', link: 'https://github.com/thaweesakmos56-netizen/shooting-game' },
+        'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทเรียลไทม์ พัฒนาด้วย Node.js', en: 'Instant messaging app built with Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
+    };
 
-        window.openProject = function(id) {
-            const project = projectData[id];
-            const isThai = document.body.classList.contains('lang-th-active');
-            document.getElementById('modalBody').innerHTML = `
-                <h2 style="color:var(--accent-gold); margin-bottom:1rem;">${project.title}</h2>
-                <p style="color:#fff;">${isThai ? project.th : project.en}</p>
-                <a href="${project.link}" target="_blank" class="visit-btn">Visit GitHub</a>
-            `;
-            document.getElementById('projectModal').style.display = 'flex';
-        };
+    window.openProject = function(id) {
+        const project = projectData[id];
+        const isThai = document.body.classList.contains('lang-th-active');
+        document.getElementById('modalBody').innerHTML = `
+            <h2 style="color:var(--accent-gold); margin-bottom:1rem;">${project.title}</h2>
+            <p style="color:#fff;">${isThai ? project.th : project.en}</p>
+            <a href="${project.link}" target="_blank" class="visit-btn">Visit GitHub</a>
+        `;
+        document.getElementById('projectModal').style.display = 'flex';
+    };
+    window.closeProject = () => document.getElementById('projectModal').style.display = 'none';
 
-        window.closeProject = () => document.getElementById('projectModal').style.display = 'none';
+    // ==========================================
+    // 4. ระบบแอนิเมชันตอนเลื่อน (SCROLL LOGIC) - ปรับปรุงใหม่
+    // ==========================================
+    const introOverlay = document.getElementById('introOverlay');
+    const contentWrapper = document.getElementById('mainContentWrapper');
+    const galaxyScene = document.getElementById('galaxyScene');
+    const zusLeft = document.getElementById('zusLeft');
+    const zusRight = document.getElementById('zusRight');
+    const hikari = document.getElementById('hikari');
+    const jesusScene = document.getElementById('jesusScene');
+    const jesus1 = document.getElementById('jesus1');
+    const jesus2 = document.getElementById('jesus2');
+    const introHint = document.getElementById('introHint');
 
-        // Scroll Logic 
-        const introOverlay = document.getElementById('introOverlay');
-        const contentWrapper = document.getElementById('mainContentWrapper');
-        const galaxyScene = document.getElementById('galaxyScene');
-        const zusLeft = document.getElementById('zusLeft');
-        const zusRight = document.getElementById('zusRight');
-        const hikari = document.getElementById('hikari');
-        const jesusScene = document.getElementById('jesusScene');
-        const jesus1 = document.getElementById('jesus1');
-        const jesus2 = document.getElementById('jesus2');
-        const introHint = document.getElementById('introHint');
+    // ตั้งค่าจุดเวลา (Timeline)
+    const zusStart = 600, zusTouch = 3500, hikariStart = 3200;
+    const jesusStart = 5000, jesusMiddle = 7500, fadeOutStart = 8500, fadeOutEnd = 10000;
 
-        const zusStart = 600, zusTouch = 3500, hikariStart = 3200;
-        const jesusStart = 5000, jesusMiddle = 7500, fadeOutStart = 8500, fadeOutEnd = 10000;
+    window.addEventListener('scroll', function() {
+        const scrollValue = window.scrollY;
 
-        window.addEventListener('scroll', function() {
-            const scrollValue = window.scrollY;
+        // --- 4.1 จัดการการ Fade ของพื้นหลังสีดำ ---
+        if (scrollValue < fadeOutEnd) {
+            let progress = Math.max(0, (scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+            introOverlay.style.opacity = 1 - progress;
+            introOverlay.style.display = 'block';
+            contentWrapper.style.opacity = progress;
+            introOverlay.style.pointerEvents = (progress > 0.8) ? 'none' : 'auto';
+        } else {
+            introOverlay.style.display = 'none'; 
+            contentWrapper.style.opacity = 1;
+        }
 
-            // Fade Transition
-            if (scrollValue < fadeOutEnd) {
-                let progress = Math.max(0, (scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
-                introOverlay.style.opacity = 1 - progress;
-                introOverlay.style.display = 'block';
-                contentWrapper.style.opacity = progress;
-                // เมื่อเริ่มจางหาย ให้คืนค่าคลิกให้กับ content
-                introOverlay.style.pointerEvents = (progress > 0.8) ? 'none' : 'none'; 
-            } else {
-                introOverlay.style.display = 'none'; 
-                contentWrapper.style.opacity = 1;
+        // --- 4.2 คำนวณ Galaxy & Zus (แมงป่อง) ---
+        let galaxyAlpha = 0, zusProg = 0;
+        if (scrollValue > zusStart && scrollValue < jesusStart) {
+            galaxyAlpha = Math.min((scrollValue - zusStart) / 1000, 1);
+            zusProg = Math.min((scrollValue - zusStart) / (zusTouch - zusStart), 1);
+        } else if (scrollValue >= jesusStart) {
+            galaxyAlpha = Math.max(0, 1 - ((scrollValue - jesusStart) / 500));
+        }
+
+        // --- 4.3 คำนวณ Hikari (วงแหวน) ---
+        let hikariAlpha = (scrollValue > hikariStart && scrollValue < jesusStart) 
+            ? Math.min((scrollValue - hikariStart) / 500, 1) 
+            : (scrollValue >= jesusStart ? Math.max(0, 1 - (scrollValue - jesusStart) / 500) : 0);
+
+        // --- 4.4 คำนวณ Jesus (ตามโค้ดที่คุณต้องการ) ---
+        let jesusAlpha = 0, jesusProg = 0;
+        if (scrollValue > jesusStart) {
+            jesusAlpha = Math.min((scrollValue - jesusStart) / 500, 1);
+            jesusProg = Math.min((scrollValue - jesusStart) / (jesusMiddle - jesusStart), 1);
+            if (scrollValue > fadeOutStart) {
+                jesusAlpha = Math.max(0, 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart)));
             }
+        }
+        
+        const j1Pos = -100 + (jesusProg * 250); // เลื่อนลง
+        const j1Scale = 0.5 + (jesusProg * 1.5);
+        const j2Pos = 200 - (jesusProg * 150);  // เลื่อนขึ้น
+        const j2Rotate = scrollValue * 0.1;      // หมุนตาม Scroll
 
-            // Galaxy & Zus
-            let gAlpha = 0, zProg = 0;
-            if (scrollValue > zusStart && scrollValue < jesusStart) {
-                gAlpha = Math.min((scrollValue - zusStart) / 1000, 1);
-                zProg = Math.min((scrollValue - zusStart) / (zusTouch - zusStart), 1);
-            } else if (scrollValue >= jesusStart) {
-                gAlpha = 1 - ((scrollValue - jesusStart) / 500);
-            }
-            if (galaxyScene) galaxyScene.style.opacity = gAlpha;
-            if (zusLeft) zusLeft.style.left = (-50 + zProg * 60) + '%';
-            if (zusRight) zusRight.style.right = (-50 + zProg * 60) + '%';
+        // --- 4.5 อัปเดต UI ทั้งหมดด้วย requestAnimationFrame เพื่อความลื่นไหล ---
+        requestAnimationFrame(() => {
+            // อัปเดต Galaxy & Zus
+            if (galaxyScene) galaxyScene.style.opacity = galaxyAlpha;
+            if (zusLeft) zusLeft.style.left = (-50 + zusProg * 60) + '%';
+            if (zusRight) zusRight.style.right = (-50 + zusProg * 60) + '%';
 
-            // Hikari
-            let hAlpha = (scrollValue > hikariStart && scrollValue < jesusStart) ? Math.min((scrollValue - hikariStart) / 500, 1) : (scrollValue >= jesusStart ? 1 - (scrollValue-jesusStart)/500 : 0);
+            // อัปเดต Hikari
             if (hikari) {
-                hikari.style.opacity = hAlpha;
+                hikari.style.opacity = hikariAlpha;
                 hikari.style.transform = `translate(-50%, -50%) rotate(${scrollValue * 0.15}deg)`;
             }
 
-           // Jesus
-// ==========================================
-    // 6.5 Jesus Logic (ปรับตามโค้ดที่ 1)
-    // ==========================================
-    let jesusAlpha = 0;
-    let jesusProgress = 0;
-    if (scrollValue > jesusStart) {
-        // Fade in 
-        jesusAlpha = (scrollValue - jesusStart) / 500; 
-        if (jesusAlpha > 1) jesusAlpha = 1;
-        
-        // Progress สำหรับตำแหน่ง
-        jesusProgress = (scrollValue - jesusStart) / (jesusMiddle - jesusStart);
-        if (jesusProgress > 1) jesusProgress = 1;
-
-        // Fade out เมื่อถึงจุดจบ
-        if (scrollValue > fadeOutStart) {
-            jesusAlpha = 1 - ((scrollValue - fadeOutStart) / (fadeOutEnd - fadeOutStart));
-        }
-    }
-
-    // คำนวณตำแหน่งและค่าการหมุนตามโค้ดที่ 1
-    const j1Pos = -100 + (jesusProgress * 250); // วิ่งจากบนลงล่าง (-100 ถึง 150)
-    const j1Scale = 0.5 + (jesusProgress * 1.5); 
-    const j2Pos = 200 - (jesusProgress * 150);  // วิ่งจากล่างขึ้นบน (200 ถึง 50)
-    const j2Rotate = scrollValue * 0.1;         // หมุนตามการ Scroll เหมือน Hikari
-
-    // ==========================================
-    // 6.6 Update UI
-    // ==========================================
-    requestAnimationFrame(() => {
-        // ... (โค้ดส่วน Leaf, Galaxy, Zus, Hikari คงเดิม) ...
-        if (l1[0]) {
-            l1[0].style.transform = `translateX(-${s1}px)`;
-            l2[0].style.transform = `translateX(-${s2}px)`;
-            l3[0].style.transform = `translateX(-${s3}px)`;
-            l1[1].style.transform = `translateX(${s1}px)`;
-            l2[1].style.transform = `translateX(${s2}px)`;
-            l3[1].style.transform = `translateX(${s3}px)`;
-        }
-
-        if (galaxyScene) galaxyScene.style.opacity = galaxyAlpha;
-        if (zusLeft) zusLeft.style.left = moveX + '%';
-        if (zusRight) zusRight.style.right = moveX + '%';
-        if (hikari) {
-            hikari.style.opacity = hikariAlpha;
-            hikari.style.transform = `translate(-50%, -50%) rotate(${hikariRotation}deg)`;
-        }
-
-        // ส่วนที่แก้ไข: Jesus Scene Update
-        if (jesusScene) {
-            jesusScene.style.opacity = jesusAlpha;
-            if (jesus1) {
-                jesus1.style.top = j1Pos + '%';
-                // คงค่า scale และเพิ่ม rotate เล็กน้อยหากต้องการ (ตามโค้ดที่ 2 เดิม)
-                jesus1.style.transform = `translate(-50%, -50%) scale(${j1Scale})`;
+            // อัปเดต Jesus (ส่วนที่คุณแก้ไขล่าสุด)
+            if (jesusScene) {
+                jesusScene.style.opacity = jesusAlpha;
+                if (jesus1) {
+                    jesus1.style.top = j1Pos + '%';
+                    jesus1.style.transform = `translate(-50%, -50%) scale(${j1Scale})`;
+                }
+                if (jesus2) {
+                    jesus2.style.top = j2Pos + '%';
+                    jesus2.style.transform = `translate(-50%, -50%) rotate(${j2Rotate}deg)`;
+                }
             }
-            if (jesus2) {
-                jesus2.style.top = j2Pos + '%';
-                // เปลี่ยนจากหมุนตาม Progress เป็นหมุนตาม ScrollValue (ตามโค้ดที่ 1)
-                jesus2.style.transform = `translate(-50%, -50%) rotate(${j2Rotate}deg)`;
-            }
-        }
 
-        if (introHint) {
-            if (scrollValue > 50) {
-                introHint.style.opacity = '0';
-                introHint.style.visibility = 'hidden';
-            } else {
-                introHint.style.opacity = '1';
-                introHint.style.visibility = 'visible';
+            // จัดการข้อความใบ้ (Scroll to explore)
+            if (introHint) {
+                if (scrollValue > 50) {
+                    introHint.style.opacity = '0';
+                    introHint.style.visibility = 'hidden';
+                } else {
+                    introHint.style.opacity = '1';
+                    introHint.style.visibility = 'visible';
+                }
             }
-        }
-    });
-            if (introHint) introHint.style.opacity = scrollValue > 50 ? '0' : '1';
         });
-    </script>
+    });
+</script>
 </body>
 </html>
+
 
 
 
