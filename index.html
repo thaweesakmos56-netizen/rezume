@@ -413,8 +413,162 @@
             <div id="modalBody"></div>
         </div>
     </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 1. เริ่มต้นระบบ AOS
+    AOS.init({ duration: 1000, once: false });
 
-<script
+    // 2. ระบบสลับภาษา
+    document.getElementById('langToggle').addEventListener('click', () => {
+        document.body.classList.toggle('lang-th-active');
+        document.body.classList.toggle('lang-en-active');
+    });
+
+    // 3. ข้อมูลโปรเจกต์ Modal
+    const projectData = {
+        'thaweesak-bot': { title: 'Thaweesak (Scorpion Bot)', th: 'แชทบอท LINE ให้ความรู้แมงป่องช้าง พัฒนาด้วย Node.js', en: 'LINE Chatbot for Scorpion info using Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Thaweesak' },
+        'line-supplier': { title: 'LINE Supplier Quotation', th: 'ระบบขอใบเสนอราคาผ่าน LINE พร้อมหลังบ้าน PHP', en: 'Quotation system via LINE API with PHP backend.', link: 'https://github.com/thaweesakmos56-netizen/LINE-Supplier-Quotation-System' },
+        'smart-task': { title: 'Smart Task Manager', th: 'แอปจัดการงานและติดตามสถานะ พัฒนาด้วย PHP', en: 'Task Management app built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/smart-task-manager' },
+        'sales-dash': { title: 'Sales Dashboard', th: 'ระบบวิเคราะห์ยอดขายและกราฟสถิติด้วย PHP', en: 'Sales analysis dashboard built with PHP.', link: 'https://github.com/thaweesakmos56-netizen/sales-dashboard' },
+        'shooting-game': { title: 'Shooting Game (Arcade)', th: 'เกมยิงแนวอาเขต พัฒนาด้วย Vanilla JS', en: 'Arcade shooting game built with Vanilla JavaScript.', link: 'https://github.com/thaweesakmos56-netizen/shooting-game' },
+        'realtime-chat': { title: 'Real-Time Chat App', th: 'แอปพลิเคชันแชทเรียลไทม์ พัฒนาด้วย Node.js', en: 'Instant messaging app built with Node.js.', link: 'https://github.com/thaweesakmos56-netizen/Real-Time-Chat-Application' }
+    };
+
+    window.openProject = function(id) {
+        const project = projectData[id];
+        const isThai = document.body.classList.contains('lang-th-active');
+        document.getElementById('modalBody').innerHTML = `
+            <h2 style="color:var(--accent-gold); margin-bottom:1rem;">${project.title}</h2>
+            <p style="color:#fff;">${isThai ? project.th : project.en}</p>
+            <a href="${project.link}" target="_blank" class="visit-btn">Visit GitHub</a>
+        `;
+        document.getElementById('projectModal').style.display = 'flex';
+    };
+    window.closeProject = () => document.getElementById('projectModal').style.display = 'none';
+
+    // ==========================================
+    // 4. SCROLL ANIMATION LOGIC (แก้ไขจุดบกพร่องช่วงรอยต่อ)
+    // ==========================================
+    const introOverlay = document.getElementById('introOverlay');
+    const contentWrapper = document.getElementById('mainContentWrapper');
+    const galaxyScene = document.getElementById('galaxyScene');
+    const galaxyBg = document.querySelector('.galaxy-bg');
+    const jesusBg = document.querySelector('.jesus-bg');
+    const zusLeft = document.getElementById('zusLeft');
+    const zusRight = document.getElementById('zusRight');
+    const hikari = document.getElementById('hikari');
+    const jesusScene = document.getElementById('jesusScene');
+    const jesus1 = document.getElementById('jesus1');
+    const jesus2 = document.getElementById('jesus2');
+    const introHint = document.getElementById('introHint');
+
+    // Timeline Configuration
+    const zusStart = 400, zusTouch = 3000, hikariStart = 2800;
+    const jesusStart = 4800, jesusMiddle = 7000, fadeOutStart = 8500, fadeOutEnd = 10000;
+
+    window.addEventListener('scroll', function() {
+        const s = window.scrollY;
+
+        // --- 4.1 Transition Main (Intro -> Resume) ---
+        if (s < fadeOutEnd) {
+            let p = Math.max(0, (s - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+            introOverlay.style.opacity = 1 - p;
+            introOverlay.style.display = 'block';
+            contentWrapper.style.opacity = p;
+            introOverlay.style.pointerEvents = (p > 0.8) ? 'none' : 'auto';
+        } else {
+            introOverlay.style.display = 'none'; 
+            contentWrapper.style.opacity = 1;
+        }
+
+        // --- 4.2 Scene 1: Scorpions (Zus) ---
+        let zProg = Math.min(Math.max((s - zusStart) / (zusTouch - zusStart), 0), 1);
+        
+        // Scene 2: Zoom Through (ช่วงซูมลอด)
+        let zoomProg = 0;
+        if (s > zusTouch) {
+            zoomProg = Math.min((s - zusTouch) / (jesusStart - zusTouch), 1);
+        }
+
+        // --- 4.3 Scene 3: Jesus Scene Entry ---
+        let jAlpha = 0, jProg = 0;
+        if (s > jesusStart) {
+            jAlpha = Math.min((s - jesusStart) / 600, 1); // ค่อยๆ Fade ฉากหลังและตัวละครมาพร้อมกัน
+            jProg = Math.min((s - jesusStart) / (jesusMiddle - jesusStart), 1);
+            if (s > fadeOutStart) jAlpha = Math.max(0, 1 - (s - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+        }
+
+        // Calculations for Transforms
+        const zusFinalScale = (0.5 + (zProg * 0.6)) + (zoomProg * 8);
+        const zusExitX = zoomProg * 150;
+        const gZoomScale = 1.1 + (zoomProg * 10);
+        
+        // Jesus Character Calculations
+        const godTop = (-20 + jProg * 70); // พระเจ้ามาหยุดที่ 50
+        const boardTop = (200 - jProg * 158); // ปรับจาก 160 เป็น 158 เพื่อให้บอร์ดต่ำลงมาแตะเท้าพอดี
+        const jScale = (0.5 + jProg * 0.8);
+        const boardRotate = (1 - jProg) * -180 + 5; // หมุนมาหยุดที่ 5 องศา
+
+        // --- 4.4 Update UI with requestAnimationFrame ---
+        requestAnimationFrame(() => {
+            
+            // Manage Scene Visibility (ป้องกันภาพซ้อน)
+            if (s < jesusStart) {
+                if (galaxyScene) galaxyScene.style.display = 'flex';
+                if (jesusScene) jesusScene.style.display = 'none';
+            } else {
+                if (galaxyScene) galaxyScene.style.display = 'none';
+                if (jesusScene) jesusScene.style.display = 'block';
+            }
+
+            // Galaxy/Scorpion Update
+            if (galaxyScene.style.display !== 'none') {
+                if (galaxyBg) {
+                    galaxyBg.style.transform = `scale(${gZoomScale}) rotate(${s * 0.002}deg)`;
+                    galaxyBg.style.opacity = Math.max(0, 1 - zoomProg); // หายไปสนิทเมื่อซูมลอดเสร็จ
+                }
+                if (zusLeft) {
+                    zusLeft.style.left = ((-55 + zProg * 65) - zusExitX) + '%';
+                    zusLeft.style.transform = `translateY(-50%) scale(${zusFinalScale})`;
+                    zusLeft.style.opacity = Math.max(0, 1 - zoomProg);
+                }
+                if (zusRight) {
+                    zusRight.style.right = ((-55 + zProg * 65) - zusExitX) + '%';
+                    zusRight.style.transform = `translateY(-50%) scale(${zusFinalScale})`;
+                    zusRight.style.opacity = Math.max(0, 1 - zoomProg);
+                }
+                if (hikari) {
+                    let hAlpha = (s > hikariStart && s < jesusStart) ? Math.min((s - hikariStart) / 500, 1) : 0;
+                    hikari.style.opacity = hAlpha;
+                    hikari.style.transform = `translate(-50%, -50%) rotate(${s * 0.15}deg) scale(${1 + zoomProg * 5})`;
+                }
+            }
+
+            // Jesus Scene Update
+            if (jesusScene.style.display !== 'none') {
+                jesusScene.style.opacity = jAlpha;
+                if (jesusBg) {
+                    jesusBg.style.transform = `scale(1.2) rotate(${s * 0.001}deg)`;
+                }
+                if (jesus1) {
+                    jesus1.style.top = godTop + '%';
+                    jesus1.style.transform = `translate(-50%, -50%) scale(${jScale})`;
+                }
+                if (jesus2) {
+                    jesus2.style.top = boardTop + '%';
+                    // translate(-40%) เพื่อขยับบอร์ดไปทางขวาให้ตรงเท้า
+                    jesus2.style.transform = `translate(-40%, -50%) scale(${jScale}) rotate(${boardRotate}deg)`;
+                }
+            }
+
+            // Hint Text
+            if (introHint) {
+                introHint.style.opacity = (s > 100) ? '0' : '1';
+                introHint.style.visibility = (s > 100) ? 'hidden' : 'visible';
+            }
+        });
+    });
+</script>
 </body>
 </html>
 
